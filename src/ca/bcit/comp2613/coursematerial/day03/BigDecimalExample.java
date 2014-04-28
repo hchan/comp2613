@@ -9,9 +9,11 @@ public class BigDecimalExample {
 		double taxRate = 0.05;
 		double result = (coffee * taxRate);
 		System.out.println(result);
+		// question - is this a bug in Java or a bug in ... ???
 		//showBigDecimalCalc();
 	}
 	
+	// now let's show the BigDecimalCalc
 	public static void showBigDecimalCalc() {
 		
 		BigDecimal coffee = new BigDecimal("4.99");

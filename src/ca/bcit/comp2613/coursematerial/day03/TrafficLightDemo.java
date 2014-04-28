@@ -13,5 +13,6 @@ public class TrafficLightDemo {
 		}
 		System.out.println(countOfGreenLights);
 	}
+	// question - why is the above soln brittle?
 
 }

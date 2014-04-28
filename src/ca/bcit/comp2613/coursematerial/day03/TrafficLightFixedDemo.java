@@ -21,7 +21,7 @@ public class TrafficLightFixedDemo {
 		for (int i = 0; i < trafficLights.length; i++) {
 			TrafficLight trafficLight = trafficLights[i];
 			if (trafficLight.equals(TrafficLight.GREEN)) {
-				// if in double of what equals does ... check the source code (hightlight and then
+				// if in double of what equals does ... check the source code (high light and then
 				// F3 or CTRL-LeftMouse)
 				countOfGreenLights++;
 			}

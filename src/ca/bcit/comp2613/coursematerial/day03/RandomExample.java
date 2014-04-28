@@ -17,6 +17,6 @@ public class RandomExample {
 		}
 		System.out.println("Generated count of numbers > 0.5: " + countGreaterThanHalf);
 		
-		// Quiz, how do you generate 100 Random Objects ... say Item or Student ?
+		// question, how do you generate 100 Random Objects ... say Item or Student ?
 	}
 }

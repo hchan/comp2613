@@ -9,18 +9,19 @@ import java.util.GregorianCalendar;
 public class DateAndGregorianCalendarExample {
 
 	public static void main(String[] args) {
+		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 		Date curDate = new Date();		
-		System.out.println(curDate);
+		System.out.println(dateFormat.format(curDate));
 		
 		Calendar cal = Calendar.getInstance();
 		Calendar yesterday = cal;
 		yesterday.add(Calendar.DATE, -1);
-		System.out.println(yesterday);
 		
-		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+		
 		System.out.println(dateFormat.format(yesterday.getTime()));
 		
-		// Question - what does the following line pring
+		// question - what does the following line print
+		// question - how many methods in Date are deprecated
 		//System.out.println(dateFormat.format(cal.getTime()));
 	}
 

@@ -5,11 +5,12 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class MyTimerTaskExample extends TimerTask {
-	public static final String RUNNING = "Running Task";
+	public static boolean DONE = false;
 
 	@Override
 	public void run() {
-		System.out.println(RUNNING);
+		System.out.println("Done");
+		DONE = true;
 	}
 
 	public static void main(String args[]) {
@@ -17,15 +18,17 @@ public class MyTimerTaskExample extends TimerTask {
 		// running timer task as daemon thread
 		Timer timer = new Timer(true);
 		timer.schedule(timerTask, 5000);
-		System.out.println("I wonder will this line be printed before "
-				+ RUNNING);
-		try {
-			Thread.sleep(10000);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
+		
+		
+		while (!DONE) {
+			System.out.println("Ho hum, ho hum");
+			try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
 		}
-		System.out.println("I wonder will this line be printed before "
-				+ RUNNING);
+		System.out.println("Bye");
 	}
 
 }

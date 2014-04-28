@@ -9,7 +9,7 @@ public class BigDecimalExample {
 		double taxRate = 0.05;
 		double result = (coffee * taxRate);
 		System.out.println(result);
-		showBigDecimalCalc();
+		//showBigDecimalCalc();
 	}
 	
 	public static void showBigDecimalCalc() {

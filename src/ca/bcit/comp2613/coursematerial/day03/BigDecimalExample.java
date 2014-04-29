@@ -11,7 +11,7 @@ public class BigDecimalExample {
 		System.out.println(result);
 		// question (Eclipse) how do we refactor the above to a method?
 		// question - is this a bug in Java or a bug in ... ???
-		// hint: Google: floating point arithmetic 
+		// hint: Google: floating point arithmetic http://en.wikipedia.org/wiki/Floating_point
 		//showBigDecimalCalc();
 	}
 	

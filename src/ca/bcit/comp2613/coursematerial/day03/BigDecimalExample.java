@@ -9,7 +9,7 @@ public class BigDecimalExample {
 		double taxRate = 0.05;
 		double result = (coffee * taxRate);
 		System.out.println(result);
-		// question (Eclipse) how do we refactor the above to a method?
+		// question (Eclipse) how do we extract the above to a method?  Hint refactor
 		// question - is this a bug in Java or a bug in with your computer ... try calc???
 		// hint: Google: floating point arithmetic http://en.wikipedia.org/wiki/Floating_point
 		//showBigDecimalCalc();

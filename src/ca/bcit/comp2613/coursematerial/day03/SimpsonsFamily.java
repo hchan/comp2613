@@ -8,11 +8,15 @@ public class SimpsonsFamily {
 	}
 
 	public void bartTurnOnTV() throws DontKnowHowException {
+		// student TODO - create your own exception for Bar
+		// i.e. IFailedGrade3Exception
 		lisaTurnOnTV();
 
 	}
 
 	public void lisaTurnOnTV() throws DontKnowHowException {
+		// student TODO - create your own exception for Lisa
+		// i.e. IReadOnlyBooksException
 		maggieTurnOnTV();
 
 	}

@@ -9,7 +9,10 @@ import java.util.GregorianCalendar;
 public class DateAndGregorianCalendarExample {
 
 	public static void main(String[] args) {
-		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss"); 
+		// question, what's that weird yyyy/MM/dd HH:mm:ss and how do I find more information on that?
+		// hint SHIFT-F2 or F3
+		
 		Date curDate = new Date();		
 		System.out.println(dateFormat.format(curDate));
 		

@@ -18,6 +18,9 @@ public class SimpsonsFamily {
 	}
 
 	public void maggieTurnOnTV() throws DontKnowHowException {
+		// question : Let's say Maggie can't walk yet.
+		// how do we create a CantWalkException and encapsulate this
+		// in DontKnowHowException
 		throw new DontKnowHowException();
 
 	}

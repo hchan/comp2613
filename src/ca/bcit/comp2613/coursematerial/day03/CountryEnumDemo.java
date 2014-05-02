@@ -11,5 +11,7 @@ public class CountryEnumDemo {
 		System.out.println(Country.CAN.toString()); // hmmm, how do we check the source code for toString?
 		System.out.println(Country.CAN.getDescription());
 		System.out.println(Arrays.toString(Country.values()));
+		
+		// students: take a five minute break to hack some code 
 	}
 }

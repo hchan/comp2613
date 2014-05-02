@@ -21,6 +21,7 @@ public class SimpsonsFamily {
 		// question : Let's say Maggie can't walk yet.
 		// how do we create a CantWalkException and encapsulate this
 		// in DontKnowHowException
+		// take a 5 min lab time break to explore exceptions
 		throw new DontKnowHowException();
 
 	}

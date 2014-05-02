@@ -22,6 +22,7 @@ public class AnnotationExample {
 	
 	@SuppressWarnings({ "unused", "deprecation" })
 	@Override
+	// question: what happens if I mistype toString ... such as toStrin
 	public String toString() {
 		String retval = "";
 		

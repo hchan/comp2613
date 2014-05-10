@@ -51,6 +51,8 @@ public class ComparatorAndComparableDemo {
 				if (retval == 0) {
 					retval = o1.getFirstName().compareTo(o2.getFirstName());
 				}
+				// question, what happens when I add the following line:
+				//retval *= -1;
 				return retval;
 			}
 		};

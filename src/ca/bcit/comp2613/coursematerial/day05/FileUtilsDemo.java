@@ -14,6 +14,7 @@ public class FileUtilsDemo {
 	public static void main(String[] args) {
 		try {
 			FileUtils.writeStringToFile(new File("test.txt"), "Hello World");
+			System.out.println(FileUtils.readFileToString(new File("test.txt")));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

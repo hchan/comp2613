@@ -1,6 +1,8 @@
 package ca.bcit.comp2613.coursematerial.day06;
 
 import java.net.URL;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -61,14 +63,22 @@ public class MyController {
 
 	@FXML
 	void deleteFired(ActionEvent event) {
+		Teacher teacher = getSelectedTeacher();
+		table.getItems().remove(teacher);
 	}
 
 	@FXML
 	void newFired(ActionEvent event) {
+		Calendar cal = new GregorianCalendar();
+		idTextField.setText(Long.toString(cal.getTime().getTime()));
+		firstNameTextField.setText("Enter a First Name");
+		lastNameTextField.setText("Enter a Last Name");
 	}
 
 	@FXML
 	void saveFired(ActionEvent event) {
+		Teacher teacher = new Teacher(idTextField.getText(), firstNameTextField.getText(), lastNameTextField.getText());
+		table.getItems().add(teacher);
 	}
 
 	@FXML
@@ -76,7 +86,10 @@ public class MyController {
 
 		populateTable();
 		configurTable();
+		
 	}
+
+
 
 	private void configurTable() {
 		table.getSelectionModel().getSelectedItems()

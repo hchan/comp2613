@@ -29,12 +29,12 @@
                 </AnchorPane>
                 <AnchorPane id="anchorPane4" fx:id="details" minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                   <children>
-                    <Label id="label4" fx:id="firstNameTextField" layoutX="20.0" layoutY="56.0" minWidth="-Infinity" text="First Name" />
-                    <TextField id="textField1" layoutX="145.0" layoutY="53.0" prefHeight="22.0" prefWidth="630.0" text="" />
-                    <Label id="label4" layoutX="20.0" layoutY="21.0" minWidth="-Infinity" text="id" />
+                    <Label id="label4" layoutX="20.0" layoutY="56.0" minWidth="-Infinity" text="First Name" />
+                    <TextField id="textField1" fx:id="firstNameTextField" layoutX="145.0" layoutY="53.0" prefHeight="22.0" prefWidth="630.0" text="" />
+                    <Label id="label4" fx:id="idLabel" layoutX="20.0" layoutY="21.0" minWidth="-Infinity" text="id" />
                     <TextField id="textField1" fx:id="idTextField" layoutX="145.0" layoutY="15.0" prefHeight="22.0" prefWidth="630.0" text="" />
-                    <Label id="label4" fx:id="lastNameTextField" layoutX="21.0" layoutY="100.0" minWidth="-Infinity" text="Last Name" />
-                    <TextField id="textField1" layoutX="145.0" layoutY="100.0" prefHeight="22.0" prefWidth="630.0" text="" />
+                    <Label id="label4" layoutX="21.0" layoutY="100.0" minWidth="-Infinity" text="Last Name" />
+                    <TextField id="textField1" fx:id="lastNameTextField" layoutX="145.0" layoutY="100.0" prefHeight="22.0" prefWidth="630.0" text="" />
                   </children>
                 </AnchorPane>
               </items>

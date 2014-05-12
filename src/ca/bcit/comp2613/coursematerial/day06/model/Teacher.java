@@ -1,4 +1,4 @@
-package ca.bcit.comp2613.coursematerial.day06.data;
+package ca.bcit.comp2613.coursematerial.day06.model;
 
 public class Teacher {
 	private String id;

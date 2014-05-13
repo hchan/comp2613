@@ -1,0 +1,1 @@
+mvn com.zenjava:javafx-maven-plugin:2.0:generate-key-store -DcertDomain=ca.bcit -DcertCountry=CA -DcertState=BC

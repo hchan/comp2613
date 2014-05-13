@@ -1,0 +1,1 @@
+keytool -genkey -alias myalias -keyalg RSA -keysize 2048 -keystore startrekvancouver.jks -keypass password -storepass password -dname "CN=startrekvancouver.com"

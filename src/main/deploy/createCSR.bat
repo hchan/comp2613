@@ -1,0 +1,1 @@
+keytool -keystore startrekvancouver.jks -certreq -alias myalias -keyalg rsa -file startrekvancouver.csr -storepass password

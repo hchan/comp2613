@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<jnlp spec="1.0" xmlns:jfx="http://javafx.com" href="comp2613-0.0.1-SNAPSHOT.jnlp">
+  <information>
+    <title>Sample JavaFX Application</title>
+    <vendor>BCIT</vendor>
+    <description>Sample JavaFX 2.0 application.</description>
+    <offline-allowed/>
+  </information>
+  <resources>
+    <jfx:javafx-runtime version="2.2+" href="http://javadl.sun.com/webapps/download/GetFile/javafx-latest/windows-i586/javafx2.jnlp"/>
+  </resources>
+  <resources>
+    <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
+    <jar href="comp2613-0.0.1-SNAPSHOT-jfx.jar" size="65213" download="eager" />
+    <jar href="lib/commons-configuration-1.10.jar" size="362679" download="eager" />
+    <jar href="lib/commons-io-1.3.2.jar" size="87776" download="eager" />
+    <jar href="lib/commons-lang-2.6.jar" size="284220" download="eager" />
+    <jar href="lib/commons-logging-1.1.1.jar" size="60686" download="eager" />
+    <jar href="lib/hamcrest-core-1.1.jar" size="76643" download="eager" />
+    <jar href="lib/jackson-core-asl-1.9.2.jar" size="228286" download="eager" />
+    <jar href="lib/jackson-mapper-asl-1.9.2.jar" size="765648" download="eager" />
+    <jar href="lib/junit-dep-4.8.2.jar" size="218272" download="eager" />
+    <jar href="lib/log4j-1.2.17.jar" size="489884" download="eager" />
+  </resources>
+<security>
+  <all-permissions/>
+</security>
+  <applet-desc  width="800" height="600" main-class="com.javafx.main.NoJavaFXFallback"  name="comp2613-0.0.1-SNAPSHOT" >
+    <param name="requiredFXVersion" value="2.2+"/>
+  </applet-desc>
+  <jfx:javafx-desc  width="800" height="600" main-class="ca.bcit.comp2613.coursematerial.day06.JavaFXMainDemo"  name="comp2613-0.0.1-SNAPSHOT" />
+  <update check="background"/>
+</jnlp>

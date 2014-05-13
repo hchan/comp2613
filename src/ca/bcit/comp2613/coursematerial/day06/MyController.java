@@ -19,6 +19,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import ca.bcit.comp2613.coursematerial.day05.model.Teacher;
+import ca.bcit.comp2613.coursematerial.day05.util.TeacherUtil;
 
 public class MyController {
 
@@ -144,6 +145,7 @@ public class MyController {
 		teachers.add(teacher);
 		teacher = new Teacher("2", "Paul", "Mills");
 		teachers.add(teacher);
+		teachers.addAll(TeacherUtil.create100RandomTeachers());
 		table.setItems(teachers);
 
 	}

@@ -11,6 +11,7 @@ import org.codehaus.jackson.map.ObjectMapper;
 import org.codehaus.jackson.type.TypeReference;
 
 import ca.bcit.comp2613.coursematerial.day05.model.Teacher;
+import ca.bcit.comp2613.coursematerial.day05.util.TeacherUtil;
 
 /**
  * @author Henry
@@ -22,13 +23,7 @@ public class JacksonDemo {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		ArrayList<Teacher> teachers = new ArrayList<>();
-		for (int i = 0; i < 100; i++) {
-			String firstName = UUID.randomUUID().toString();
-			String lastName = UUID.randomUUID().toString();
-			Teacher teacher = new Teacher (Integer.toString(i), firstName, lastName);
-			teachers.add(teacher);
-		}
+		ArrayList<Teacher> teachers = TeacherUtil.create100RandomTeachers();
 		ObjectMapper objectMapper = new ObjectMapper();
 		try {
 			ByteArrayOutputStream baos = new ByteArrayOutputStream();

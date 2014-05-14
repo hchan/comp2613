@@ -36,7 +36,7 @@
 					<allPermissions>true</allPermissions>
 					<webOutputDir>${project.basedir}/showcase</webOutputDir>
 			
-					<keyStore>keystore/startrekvancouver.jks</keyStore>
+					<keyStore>keystore/keystore.jks</keyStore>
 					<keyPassword>password</keyPassword>
 					<keyStorePassword>password</keyStorePassword>
 					<keyStoreAlias>myalias</keyStoreAlias>

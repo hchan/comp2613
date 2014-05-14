@@ -1,0 +1,22 @@
+<html>
+<body>
+<H1>Demo Teacher Application</H1>
+I am an instructor for a course @ BCIT, and this Git project includes a demo of my work via <a href="http://www.oracle.com/technetwork/java/javase/javawebstart/index.html">Java Web Start</a>.  This project will help manage an inventory of teachers.  Admittedly, I was going to create a relationship of teachers and students but never got around to it - spelt work in progress.
+<br/>
+Before you launch my Web Start link, note that this code was self-signed, meaning that Web Start will not work per the default settings.  One soln, would be to get this signed by certificate authority, but that is still a work in progress.  The current soln is for the end user to change their Java Settings.  In Windows, click, Start->Configure Java->Security->Edit Site List and add the following URL:
+<span id="urlToEaddToEditSiteList" style="color:red"></span><br/>
+For reference, see: <a href="http://www.java.com/en/download/help/jcp_security.xml">Setting the Security levels through the Java Control Panel</a>
+<br/>
+<IMG SRC="javaControlPanel.png"/>
+<hr/>
+Click <a href="showcase/comp2613-0.0.1-SNAPSHOT.html" id="editSiteListHref" >here</a> to launch my Teacher web start application
+<script>
+var editSiteListURL = document.URL;
+var editSiteListHref = document.getElementById("editSiteListHref").href;
+// editSiteListURL = editSiteListURL.replace("index.html", editSiteListHref);
+document.getElementById("urlToEaddToEditSiteList").innerHTML = editSiteListHref;
+
+</script>
+</body>
+
+</html>

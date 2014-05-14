@@ -41,6 +41,10 @@
 					<keyStorePassword>password</keyStorePassword>
 					<keyStoreAlias>myalias</keyStoreAlias>
 					<needMenu>true</needMenu>
+					<overwriteKeyStore>true</overwriteKeyStore>
+					<certDomain>ca.bcit</certDomain>
+					<certState>BC</certState>
+					<certCountry>CA</certCountry>
 					<verbose>true</verbose>
 				</configuration>
 				<dependencies>

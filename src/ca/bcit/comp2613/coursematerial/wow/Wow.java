@@ -16,7 +16,7 @@ import org.apache.log4j.Logger;
  *         For those of you who don't know, I am a WoW Addict WoW stands for
  *         World Of Warcraft
  *         So here's the problem. How powerful are my
- *         characters? But before that do:
+ *         characters? 
  * 
  *         1) Modify the Race enum to include HUMAN 
  *         

@@ -11,7 +11,7 @@
   </resources>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
-    <jar href="comp2613-0.0.1-SNAPSHOT-jfx.jar" size="65213" download="eager" />
+    <jar href="comp2613-0.0.1-SNAPSHOT-jfx.jar" size="63814" download="eager" />
     <jar href="lib/commons-configuration-1.10.jar" size="362679" download="eager" />
     <jar href="lib/commons-io-1.3.2.jar" size="87776" download="eager" />
     <jar href="lib/commons-lang-2.6.jar" size="284220" download="eager" />

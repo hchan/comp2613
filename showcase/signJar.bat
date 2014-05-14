@@ -1,0 +1,1 @@
+jarsigner -storepass password -keystore   ..\keystore\startrekvancouver.jks comp2613-0.0.1-SNAPSHOT-jfx.jar myalias

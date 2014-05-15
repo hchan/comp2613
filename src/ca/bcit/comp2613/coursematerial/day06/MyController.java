@@ -18,7 +18,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
-import ca.bcit.comp2613.coursematerial.day05.model.Teacher;
+import ca.bcit.comp2613.coursematerial.day02.model.Teacher;
 import ca.bcit.comp2613.coursematerial.day05.util.TeacherUtil;
 
 public class MyController {

@@ -3,7 +3,7 @@ package ca.bcit.comp2613.coursematerial.day05.util;
 import java.util.ArrayList;
 import java.util.UUID;
 
-import ca.bcit.comp2613.coursematerial.day05.model.Teacher;
+import ca.bcit.comp2613.coursematerial.day02.model.Teacher;
 
 public class TeacherUtil {
 

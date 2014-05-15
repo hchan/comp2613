@@ -1,4 +1,4 @@
-package ca.bcit.comp2613.coursematerial.day05.model;
+package ca.bcit.comp2613.coursematerial.day02.model;
 
 public class Teacher {
 	private String id;
@@ -30,6 +30,13 @@ public class Teacher {
 	}
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
+	}
+	
+	@Override
+	public String toString() {	
+		// kinda JSON'ish, but not 100% there
+		// fyi, there's a tool for that ;)
+		return "id = " + id + ", firstName = " + firstName + ", lastName = " + lastName; 
 	}
 
 }

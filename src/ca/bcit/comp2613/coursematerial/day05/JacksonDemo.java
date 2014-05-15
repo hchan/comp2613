@@ -10,7 +10,7 @@ import java.util.UUID;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.codehaus.jackson.type.TypeReference;
 
-import ca.bcit.comp2613.coursematerial.day05.model.Teacher;
+import ca.bcit.comp2613.coursematerial.day02.model.Teacher;
 import ca.bcit.comp2613.coursematerial.day05.util.TeacherUtil;
 
 /**

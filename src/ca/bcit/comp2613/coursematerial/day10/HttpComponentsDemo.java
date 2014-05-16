@@ -1,4 +1,4 @@
-package ca.bcit.comp2613.coursematerial.day11;
+package ca.bcit.comp2613.coursematerial.day10;
 
 import java.io.BufferedReader;
 import java.io.IOException;

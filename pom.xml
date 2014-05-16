@@ -35,7 +35,7 @@
 					<mainClass>ca.bcit.comp2613.coursematerial.day06.JavaFXMainDemo</mainClass>
 					<allPermissions>true</allPermissions>
 					<webOutputDir>${project.basedir}/showcase</webOutputDir>
-			
+
 					<keyStore>keystore/keystore.jks</keyStore>
 					<keyPassword>password</keyPassword>
 					<keyStorePassword>password</keyStorePassword>
@@ -88,6 +88,11 @@
 			<groupId>junit</groupId>     <!-- NOT org.junit here -->
 			<artifactId>junit-dep</artifactId>
 			<version>4.8.2</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpclient</artifactId>
+			<version>4.3.3</version>
 		</dependency>
 
 

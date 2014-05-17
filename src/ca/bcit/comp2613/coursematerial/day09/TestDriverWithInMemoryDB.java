@@ -19,7 +19,7 @@ public class TestDriverWithInMemoryDB {
 		teacher.setId("a00788076");		
 		teacher.setFirstName("HENRY");
 		teacher.setLastName("Chan");
-		teacherRepository.save(teacher); // note that the orphans aren't removed
+		teacherRepository.save(teacher); 
 		
 		context.close();
 		

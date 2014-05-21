@@ -1,5 +1,6 @@
 package ca.bcit.comp2613.coursematerial.day06;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
@@ -11,6 +12,9 @@ import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
@@ -18,10 +22,13 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 import ca.bcit.comp2613.coursematerial.day02.model.Teacher;
 import ca.bcit.comp2613.coursematerial.day05.util.TeacherUtil;
 
-public class MyController {
+public class TeacherController {
+	  @FXML
+	    private AnchorPane root;
 
 	@FXML
 	private ResourceBundle resources;
@@ -61,6 +68,9 @@ public class MyController {
 
 	@FXML
 	private TableView<Teacher> table;
+	
+	@FXML
+	private Button viewStudentsButton;
 
 	@FXML
 	void deleteFired(ActionEvent event) {
@@ -80,6 +90,18 @@ public class MyController {
 	void saveFired(ActionEvent event) {
 		Teacher teacher = new Teacher(idTextField.getText(), firstNameTextField.getText(), lastNameTextField.getText());
 		table.getItems().add(teacher);
+	}
+	
+	@FXML
+	void viewStudentsFired(ActionEvent event) throws IOException {
+		System.out.println("HERE");
+		FXMLLoader fxmlLoader = new FXMLLoader();		
+		Parent student = (Parent) fxmlLoader.load(getClass().getResource("Student.fxml").openStream());
+		fxmlLoader.getController(); // TODO
+		Scene scene = new Scene(student);
+		Stage newStage = new Stage();
+		newStage.setScene(scene);
+		newStage.show();
 	}
 
 	@FXML
@@ -140,11 +162,7 @@ public class MyController {
 				.setCellValueFactory(new PropertyValueFactory<Teacher, String>(
 						"lastName"));
 
-		Teacher teacher = new Teacher("1", "Henry", "Chan");
-
-		teachers.add(teacher);
-		teacher = new Teacher("2", "Paul", "Mills");
-		teachers.add(teacher);
+		
 		teachers.addAll(TeacherUtil.create100RandomTeachers());
 		table.setItems(teachers);
 

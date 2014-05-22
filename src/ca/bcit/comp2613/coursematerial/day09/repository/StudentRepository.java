@@ -18,10 +18,12 @@ public interface StudentRepository extends CrudRepository<Student, Long> {
 	Student findByLastnameOrFirstname(@Param("lastName") String lastName,
 	                                 @Param("firstName") String firstFame);
 	
+	/*
 	 List<Student> findByFirstNameAndLastName(String firstName, String lastName);
 	
 	
 	@Modifying
 	@Query("update Student s set s.firstName = ?1 where u.lastName = ?2")
 	int setFixedFirstnameFor(String firstName, String lastName);
+	*/
 }

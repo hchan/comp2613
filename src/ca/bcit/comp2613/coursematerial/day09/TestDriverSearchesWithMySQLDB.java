@@ -1,6 +1,5 @@
 package ca.bcit.comp2613.coursematerial.day09;
 
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,18 +19,25 @@ import ca.bcit.comp2613.coursematerial.day09.util.TeacherUtil;
 @ImportResource("applicationContext.xml")
 public class TestDriverSearchesWithMySQLDB {
 	public static void main(String[] args) {
-		ConfigurableApplicationContext context = SpringApplication.run(TestDriverSearchesWithMySQLDB.class); 
-		
-		TeacherRepository teacherRepository = context.getBean(TeacherRepository.class);
-		StudentRepository studentRepository = context.getBean(StudentRepository.class);
-		
-	Teacher teacher = teacherRepository.findOne("0");
-	
-	List<Student> studentsOfFirstTeacher = teacher.getStudents();
-		for (Student student: studentsOfFirstTeacher) {
+		ConfigurableApplicationContext context = SpringApplication
+				.run(TestDriverSearchesWithMySQLDB.class);
+
+		TeacherRepository teacherRepository = context
+				.getBean(TeacherRepository.class);
+		StudentRepository studentRepository = context
+				.getBean(StudentRepository.class);
+
+		Teacher teacher = teacherRepository.findOne("0");
+
+		List<Student> studentsOfFirstTeacher = teacher.getStudents();
+		for (Student student : studentsOfFirstTeacher) {
 			System.out.println(student);
 		}
-		context.close();
 		
+		Student student = studentsOfFirstTeacher.get(0);
+		studentsOfFirstTeacher.remove(student);
+		teacherRepository.save(teacher);
+		context.close();
+
 	}
 }

@@ -14,6 +14,9 @@ import javax.persistence.JoinTable;
 import javax.persistence.JoinColumn;
 import javax.persistence.Transient;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
 @Entity
 public class Student {
 
@@ -25,6 +28,7 @@ public class Student {
 	private String lastName;
 
 	@ManyToMany(fetch=FetchType.EAGER)
+	@Fetch (FetchMode.JOIN) // note that the fetchmode will be select ... damn bug with Spring Data!
 	@JoinTable(name = "teacher_student",
 	joinColumns = { @JoinColumn(name = "student_id") }, inverseJoinColumns = { @JoinColumn(name = "teacher_id") })
 	private List<Teacher> teachers;

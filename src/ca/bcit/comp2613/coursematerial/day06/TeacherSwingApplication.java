@@ -4,6 +4,7 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JTable;
+import javax.swing.ListSelectionModel;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
@@ -22,6 +23,8 @@ import java.util.ArrayList;
 import java.util.Vector;
 
 import javax.swing.JScrollPane;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 
 import ca.bcit.comp2613.coursematerial.day06.model.Teacher;
 import ca.bcit.comp2613.coursematerial.day06.util.TeacherUtil;
@@ -35,7 +38,10 @@ public class TeacherSwingApplication {
 	private JLabel lblLastName;
 	private JLabel lblId;
 	private SwingTeacherModel swingTeacherModel;
-	public String[] columnNames = new String[] {"id", "First Name", "Last Name"};
+	public String[] columnNames = new String[] { "id", "First Name",
+			"Last Name" };
+	private JLabel lblNewLabel;
+
 	/**
 	 * Launch the application.
 	 */
@@ -43,7 +49,7 @@ public class TeacherSwingApplication {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					TeacherSwingApplication window = new TeacherSwingApplication();					
+					TeacherSwingApplication window = new TeacherSwingApplication();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -61,8 +67,8 @@ public class TeacherSwingApplication {
 	}
 
 	private void initTable() {
-		//swingTeacherModel = new SwingTeacherModel();
-		 Object[][] data = null;
+		// swingTeacherModel = new SwingTeacherModel();
+		Object[][] data = null;
 		ArrayList<Teacher> teachers = TeacherUtil.create100RandomTeachers();
 		data = new Object[teachers.size()][3];
 		int i = 0;
@@ -72,11 +78,21 @@ public class TeacherSwingApplication {
 			data[i][2] = teacher.getLastName();
 			i++;
 		}
-		 
-		       
-		
+
 		swingTeacherModel.setDataVector(data, columnNames);
-		table = new JTable(swingTeacherModel);
+		// table = new JTable(swingTeacherModel);
+		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		table.getSelectionModel().addListSelectionListener(
+				new ListSelectionListener() {
+
+					@Override
+					public void valueChanged(ListSelectionEvent e) {
+						if (e.getValueIsAdjusting()) {
+							System.out.println("Row listener" + e);
+						}
+					}
+				});
+
 		table.repaint();
 	}
 
@@ -88,60 +104,66 @@ public class TeacherSwingApplication {
 		frame.setBounds(100, 100, 601, 499);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
-		
-		
-		//table = new JTable();
+
+		// table = new JTable();
 		swingTeacherModel = new SwingTeacherModel();
-	
+
 		table = new JTable(swingTeacherModel);
-		table.repaint();
-		
-		
+
 		// table.setPreferredScrollableViewportSize(new Dimension(500, 70));
-		//table.setBounds(0, 11, 585, 247);
+		// table.setBounds(0, 11, 585, 247);
 		table.setFillsViewportHeight(true);
 		JScrollPane scrollPane = new JScrollPane(table);
 		scrollPane.setBounds(0, 11, 585, 247);
 		frame.getContentPane().add(scrollPane);
-		//scrollPane.add(table);
-		//frame.getContentPane().add(table);
-		
+		// scrollPane.add(table);
+		// frame.getContentPane().add(table);
+
 		JLabel lblFirstName = new JLabel("First Name");
 		lblFirstName.setBounds(44, 330, 103, 14);
 		frame.getContentPane().add(lblFirstName);
-		
+
 		firstNameTextField = new JTextField();
 		firstNameTextField.setBounds(159, 327, 86, 20);
 		frame.getContentPane().add(firstNameTextField);
 		firstNameTextField.setColumns(10);
-		
+
 		lastNameTextField = new JTextField();
 		lastNameTextField.setBounds(159, 371, 86, 20);
 		frame.getContentPane().add(lastNameTextField);
 		lastNameTextField.setColumns(10);
-		
+
 		lblLastName = new JLabel("Last Name");
 		lblLastName.setBounds(44, 374, 77, 14);
 		frame.getContentPane().add(lblLastName);
-		
+
 		lblId = new JLabel("id");
 		lblId.setBounds(44, 288, 46, 14);
 		frame.getContentPane().add(lblId);
-		
+
 		JButton btnUpdate = new JButton("Update");
+		btnUpdate.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				System.out.println("Inside Update");
+			}
+		});
 		btnUpdate.setBounds(44, 412, 89, 23);
 		frame.getContentPane().add(btnUpdate);
-		
-		JButton btnDelete = new JButton("New button");
+
+		JButton btnDelete = new JButton("Delete");
 		btnDelete.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
 		btnDelete.setBounds(169, 412, 89, 23);
 		frame.getContentPane().add(btnDelete);
-		
-		JButton btnNewButton = new JButton("New button");
+
+		JButton btnNewButton = new JButton("New");
 		btnNewButton.setBounds(496, 260, 89, 23);
 		frame.getContentPane().add(btnNewButton);
+
+		lblNewLabel = new JLabel("New label");
+		lblNewLabel.setBounds(159, 288, 46, 14);
+		frame.getContentPane().add(lblNewLabel);
 	}
 }

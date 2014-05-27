@@ -21,6 +21,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
+import java.util.UUID;
 import java.util.Vector;
 
 import javax.swing.JScrollPane;
@@ -98,12 +100,12 @@ public class TeacherSwingApplication {
 		} catch (Exception e) {}
 	}
 
-	public void doUpdate() {
+	public void doSave() {
 		String id = idTextField.getText();
 		String firstName = firstNameTextField.getText();
 		String lastName = lastNameTextField.getText();
 		Teacher teacher = new Teacher(id, firstName, lastName);
-		TeacherUtil.update(teachers, teacher);
+		TeacherUtil.save(teachers, teacher);
 		//table.clearSelection();
 		refreshTable();
 	}
@@ -113,6 +115,13 @@ public class TeacherSwingApplication {
 		Teacher teacher = new Teacher(id, null, null);
 		TeacherUtil.delete(teachers, teacher);
 		refreshTable();
+	}
+	
+	public void doNew() {
+		String id = UUID.randomUUID().toString();
+		idTextField.setText(id);
+		firstNameTextField.setText("");
+		lastNameTextField.setText("");
 	}
 
 	private void refreshTable() {
@@ -176,14 +185,14 @@ public class TeacherSwingApplication {
 		lblId.setBounds(44, 288, 46, 14);
 		frame.getContentPane().add(lblId);
 
-		JButton btnUpdate = new JButton("Update");
-		btnUpdate.addActionListener(new ActionListener() {
+		JButton btnSave = new JButton("Save");
+		btnSave.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				doUpdate();
+				doSave();
 			}
 		});
-		btnUpdate.setBounds(44, 412, 89, 23);
-		frame.getContentPane().add(btnUpdate);
+		btnSave.setBounds(44, 412, 89, 23);
+		frame.getContentPane().add(btnSave);
 
 		JButton btnDelete = new JButton("Delete");
 		btnDelete.addActionListener(new ActionListener() {
@@ -195,6 +204,11 @@ public class TeacherSwingApplication {
 		frame.getContentPane().add(btnDelete);
 
 		JButton btnNewButton = new JButton("New");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				doNew();
+			}
+		});
 		btnNewButton.setBounds(496, 260, 89, 23);
 		frame.getContentPane().add(btnNewButton);
 

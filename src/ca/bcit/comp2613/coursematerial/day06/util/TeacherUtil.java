@@ -25,15 +25,19 @@ public class TeacherUtil {
 		return teachers;
 	}
 
-	public static void update(List<Teacher> teachers, Teacher teacher) {
+	public static void save(List<Teacher> teachers, Teacher teacher) {
+		boolean foundUpdate = false;
 		for (Teacher teacherLoop :teachers) {
 			if (teacherLoop.getId().equals(teacher.getId())) {
 				teacherLoop.setFirstName(teacher.getFirstName());
 				teacherLoop.setLastName(teacher.getLastName());
+				foundUpdate = true;
 				break;
 			}
 		}
-		
+		if (!foundUpdate) { // do an insert
+			teachers.add(teacher);
+		}
 	}
 
 	public static void delete(List<Teacher> teachers, Teacher teacher) {

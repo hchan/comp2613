@@ -20,6 +20,7 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Vector;
 
 import javax.swing.JScrollPane;
@@ -40,7 +41,8 @@ public class TeacherSwingApplication {
 	private SwingTeacherModel swingTeacherModel;
 	public String[] columnNames = new String[] { "id", "First Name",
 			"Last Name" };
-	private JLabel lblNewLabel;
+	private JTextField idTextField;
+	public static List<Teacher> teachers;
 
 	/**
 	 * Launch the application.
@@ -62,24 +64,13 @@ public class TeacherSwingApplication {
 	 * Create the application.
 	 */
 	public TeacherSwingApplication() {
+		teachers = TeacherUtil.create100RandomTeachers();
 		initialize();
 		initTable();
 	}
 
 	private void initTable() {
-		// swingTeacherModel = new SwingTeacherModel();
-		Object[][] data = null;
-		ArrayList<Teacher> teachers = TeacherUtil.create100RandomTeachers();
-		data = new Object[teachers.size()][3];
-		int i = 0;
-		for (Teacher teacher : teachers) {
-			data[i][0] = teacher.getId();
-			data[i][1] = teacher.getFirstName();
-			data[i][2] = teacher.getLastName();
-			i++;
-		}
 
-		swingTeacherModel.setDataVector(data, columnNames);
 		// table = new JTable(swingTeacherModel);
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		table.getSelectionModel().addListSelectionListener(
@@ -88,11 +79,48 @@ public class TeacherSwingApplication {
 					@Override
 					public void valueChanged(ListSelectionEvent e) {
 						if (e.getValueIsAdjusting()) {
-							System.out.println("Row listener" + e);
+							populateFields();
 						}
 					}
 				});
+		refreshTable();
 
+	}
+
+	private void populateFields() {
+		try {
+			idTextField.setText(table.getModel()
+					.getValueAt(table.getSelectedRow(), 0).toString());
+			firstNameTextField.setText(table.getModel()
+					.getValueAt(table.getSelectedRow(), 1).toString());
+			lastNameTextField.setText(table.getModel()
+					.getValueAt(table.getSelectedRow(), 2).toString());
+		} catch (Exception e) {}
+	}
+
+	public void doUpdate() {
+		String id = idTextField.getText();
+		String firstName = firstNameTextField.getText();
+		String lastName = lastNameTextField.getText();
+		Teacher teacher = new Teacher(id, firstName, lastName);
+		TeacherUtil.update(teachers, teacher);
+		//table.clearSelection();
+		refreshTable();
+	}
+
+	private void refreshTable() {
+		// swingTeacherModel = new SwingTeacherModel();
+		Object[][] data = null;
+
+		data = new Object[teachers.size()][3];
+		int i = 0;
+		for (Teacher teacher : teachers) {
+			data[i][0] = teacher.getId();
+			data[i][1] = teacher.getFirstName();
+			data[i][2] = teacher.getLastName();
+			i++;
+		}
+		swingTeacherModel.setDataVector(data, columnNames);
 		table.repaint();
 	}
 
@@ -124,12 +152,12 @@ public class TeacherSwingApplication {
 		frame.getContentPane().add(lblFirstName);
 
 		firstNameTextField = new JTextField();
-		firstNameTextField.setBounds(159, 327, 86, 20);
+		firstNameTextField.setBounds(159, 327, 325, 20);
 		frame.getContentPane().add(firstNameTextField);
 		firstNameTextField.setColumns(10);
 
 		lastNameTextField = new JTextField();
-		lastNameTextField.setBounds(159, 371, 86, 20);
+		lastNameTextField.setBounds(159, 371, 325, 20);
 		frame.getContentPane().add(lastNameTextField);
 		lastNameTextField.setColumns(10);
 
@@ -144,7 +172,7 @@ public class TeacherSwingApplication {
 		JButton btnUpdate = new JButton("Update");
 		btnUpdate.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				System.out.println("Inside Update");
+				doUpdate();
 			}
 		});
 		btnUpdate.setBounds(44, 412, 89, 23);
@@ -162,8 +190,10 @@ public class TeacherSwingApplication {
 		btnNewButton.setBounds(496, 260, 89, 23);
 		frame.getContentPane().add(btnNewButton);
 
-		lblNewLabel = new JLabel("New label");
-		lblNewLabel.setBounds(159, 288, 46, 14);
-		frame.getContentPane().add(lblNewLabel);
+		idTextField = new JTextField();
+		idTextField.setEditable(false);
+		idTextField.setBounds(159, 285, 325, 20);
+		frame.getContentPane().add(idTextField);
+		idTextField.setColumns(10);
 	}
 }

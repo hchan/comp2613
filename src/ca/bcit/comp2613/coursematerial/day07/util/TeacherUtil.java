@@ -76,5 +76,19 @@ public class TeacherUtil {
 		
 	}
 
+	public static void addToClass(Teacher teacher, Student student, List<Student> students) {
+		if (teacher.getStudents() == null) {
+			teacher.setStudents(new ArrayList<Student>());
+		}
+		for (Student studentLoop : teacher.getStudents()) {
+			if (studentLoop.getId().equals(student.getId())) {
+				return; // already in class
+			}
+		}
+		
+		student = StudentUtil.findById(student.getId(), students);
+		teacher.getStudents().add(student);
+	}
+
 	
 }

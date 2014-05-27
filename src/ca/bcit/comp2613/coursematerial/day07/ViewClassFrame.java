@@ -34,7 +34,7 @@ public class ViewClassFrame extends JFrame {
 	private JTextField idTextField;
 	private Teacher teacher;
 	private JButton btnClose;
-	private JTextField textField;
+	private JTextField addTextField;
 	private JLabel lblStudentId;
 
 	public ViewClassFrame(Teacher teacher) {
@@ -82,11 +82,13 @@ public class ViewClassFrame extends JFrame {
 		refreshTable();
 	}
 
-	public void doNew() {
-		String id = UUID.randomUUID().toString();
-		idTextField.setText(id);
-		firstNameTextField.setText("");
-		lastNameTextField.setText("");
+	public void doAdd() {
+		try {
+			String id = addTextField.getText();
+			Student student = new Student(id, null, null);
+			TeacherUtil.addToClass (teacher, student, TeacherSwingApplication.students);
+		} catch (Exception e) {}
+		refreshTable();
 	}
 
 	private void refreshTable() {
@@ -165,7 +167,7 @@ public class ViewClassFrame extends JFrame {
 		JButton btnAdd = new JButton("Add");
 		btnAdd.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				doNew();
+				doAdd();
 			}
 		});
 		btnAdd.setBounds(252, 594, 89, 23);
@@ -186,10 +188,10 @@ public class ViewClassFrame extends JFrame {
 		btnClose.setBounds(496, 643, 89, 23);
 		getContentPane().add(btnClose);
 		
-		textField = new JTextField();
-		textField.setBounds(301, 556, 86, 20);
-		getContentPane().add(textField);
-		textField.setColumns(10);
+		addTextField = new JTextField();
+		addTextField.setBounds(301, 556, 86, 20);
+		getContentPane().add(addTextField);
+		addTextField.setColumns(10);
 		
 		lblStudentId = new JLabel("Student ID to Add");
 		lblStudentId.setBounds(159, 562, 125, 14);

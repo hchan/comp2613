@@ -36,7 +36,7 @@ public class StudentUtil {
 				if (teacher.getStudents() == null) {
 					teacher.setStudents(new ArrayList<Student>());					
 				}
-				teacher.getStudents().add(randomStudent);
+				TeacherUtil.addToClass(teacher, randomStudent, students);
 			}
 		}
 	}
@@ -65,5 +65,15 @@ public class StudentUtil {
 				break;
 			}
 		}
+	}
+
+	public static Student findById(Long id, List<Student> students) {
+		for (Student studentLoop :students) {
+			if (studentLoop.getId().equals(id)) {
+				return studentLoop;
+			}
+			
+		}
+		return null;
 	}
 }

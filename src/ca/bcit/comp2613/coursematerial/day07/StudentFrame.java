@@ -33,6 +33,7 @@ public class StudentFrame extends JFrame {
 	public String[] columnNames = new String[] { "id", "First Name",
 			"Last Name" };
 	private JTextField idTextField;
+	private JButton btnClose;
 
 
 	public StudentFrame() {
@@ -186,5 +187,14 @@ public class StudentFrame extends JFrame {
 		idTextField.setBounds(159, 285, 325, 20);
 		this.getContentPane().add(idTextField);
 		idTextField.setColumns(10);
+		
+		btnClose = new JButton("Close");
+		btnClose.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				StudentFrame.this.dispose();
+			}
+		});
+		btnClose.setBounds(496, 438, 89, 23);
+		getContentPane().add(btnClose);
 	}
 }

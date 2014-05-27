@@ -5,6 +5,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.UUID;
 
+import ca.bcit.comp2613.coursematerial.day07.model.Student;
 import ca.bcit.comp2613.coursematerial.day07.model.Teacher;
 
 public class TeacherUtil {
@@ -59,6 +60,20 @@ public class TeacherUtil {
 			
 		}
 		return null;
+	}
+
+	public static void removeFromClass(Teacher teacher, Student student) {
+		if (teacher.getStudents() != null) {
+			Iterator<Student> iter = teacher.getStudents().iterator();
+			while (iter.hasNext()) {
+				Student studentLoop = iter.next();
+				if (studentLoop.getId().equals(student.getId())) {
+					iter.remove();
+					break;
+				}
+			}
+		}
+		
 	}
 
 	

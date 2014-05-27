@@ -17,6 +17,9 @@ import javax.swing.event.ListSelectionListener;
 import ca.bcit.comp2613.coursematerial.day07.model.Student;
 import ca.bcit.comp2613.coursematerial.day07.model.Teacher;
 import ca.bcit.comp2613.coursematerial.day07.util.StudentUtil;
+import ca.bcit.comp2613.coursematerial.day07.util.TeacherUtil;
+
+import javax.swing.JSeparator;
 
 public class ViewClassFrame extends JFrame {
 
@@ -30,9 +33,13 @@ public class ViewClassFrame extends JFrame {
 			"Last Name" };
 	private JTextField idTextField;
 	private Teacher teacher;
+	private JButton btnClose;
+	private JTextField textField;
+	private JLabel lblStudentId;
 
 	public ViewClassFrame(Teacher teacher) {
 		this.teacher = teacher;
+		this.setTitle(teacher.getFirstName() + " " + teacher.getLastName() + "' s Class");
 		initialize();
 		initTable();
 	}
@@ -67,20 +74,11 @@ public class ViewClassFrame extends JFrame {
 		}
 	}
 
-	public void doSave() {
+	public void removeFromClass() {
 		String id = idTextField.getText();
-		String firstName = firstNameTextField.getText();
-		String lastName = lastNameTextField.getText();
-		Student student = new Student(id, firstName, lastName);
-		StudentUtil.save(TeacherSwingApplication.students, student);
-		// table.clearSelection();
-		refreshTable();
-	}
-
-	public void doDelete() {
-		String id = idTextField.getText();
+		
 		Student student = new Student(id, null, null);
-		StudentUtil.delete(TeacherSwingApplication.students, student);
+		TeacherUtil.removeFromClass (teacher, student);
 		refreshTable();
 	}
 
@@ -113,7 +111,7 @@ public class ViewClassFrame extends JFrame {
 	 */
 	private void initialize() {
 
-		this.setBounds(100, 100, 601, 499);
+		this.setBounds(100, 100, 601, 704);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.getContentPane().setLayout(null);
 
@@ -136,11 +134,13 @@ public class ViewClassFrame extends JFrame {
 		this.getContentPane().add(lblFirstName);
 
 		firstNameTextField = new JTextField();
+		firstNameTextField.setEditable(false);
 		firstNameTextField.setBounds(159, 327, 325, 20);
 		this.getContentPane().add(firstNameTextField);
 		firstNameTextField.setColumns(10);
 
 		lastNameTextField = new JTextField();
+		lastNameTextField.setEditable(false);
 		lastNameTextField.setBounds(159, 371, 325, 20);
 		this.getContentPane().add(lastNameTextField);
 		lastNameTextField.setColumns(10);
@@ -153,37 +153,50 @@ public class ViewClassFrame extends JFrame {
 		lblId.setBounds(44, 288, 46, 14);
 		this.getContentPane().add(lblId);
 
-		JButton btnSave = new JButton("Save");
-		btnSave.addActionListener(new ActionListener() {
+		JButton btnRemove = new JButton("Remove From Class");
+		btnRemove.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				doSave();
+				removeFromClass();
 			}
 		});
-		btnSave.setBounds(44, 412, 89, 23);
-		this.getContentPane().add(btnSave);
+		btnRemove.setBounds(32, 413, 252, 23);
+		this.getContentPane().add(btnRemove);
 
-		JButton btnDelete = new JButton("Delete");
-		btnDelete.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				doDelete();
-			}
-		});
-		btnDelete.setBounds(169, 412, 89, 23);
-		this.getContentPane().add(btnDelete);
-
-		JButton btnNewButton = new JButton("New");
-		btnNewButton.addActionListener(new ActionListener() {
+		JButton btnAdd = new JButton("Add");
+		btnAdd.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				doNew();
 			}
 		});
-		btnNewButton.setBounds(496, 260, 89, 23);
-		this.getContentPane().add(btnNewButton);
+		btnAdd.setBounds(252, 594, 89, 23);
+		this.getContentPane().add(btnAdd);
 
 		idTextField = new JTextField();
 		idTextField.setEditable(false);
 		idTextField.setBounds(159, 285, 325, 20);
 		this.getContentPane().add(idTextField);
 		idTextField.setColumns(10);
+		
+		btnClose = new JButton("Close");
+		btnClose.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ViewClassFrame.this.dispose();
+			}
+		});
+		btnClose.setBounds(496, 643, 89, 23);
+		getContentPane().add(btnClose);
+		
+		textField = new JTextField();
+		textField.setBounds(301, 556, 86, 20);
+		getContentPane().add(textField);
+		textField.setColumns(10);
+		
+		lblStudentId = new JLabel("Student ID to Add");
+		lblStudentId.setBounds(159, 562, 125, 14);
+		getContentPane().add(lblStudentId);
+		
+		JSeparator separator = new JSeparator();
+		separator.setBounds(182, 413, 1, 2);
+		getContentPane().add(separator);
 	}
 }

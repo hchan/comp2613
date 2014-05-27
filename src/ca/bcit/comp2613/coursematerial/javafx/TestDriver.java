@@ -1,4 +1,4 @@
-package ca.bcit.comp2613.coursematerial.day06;
+package ca.bcit.comp2613.coursematerial.javafx;
 
 public class TestDriver {
 

@@ -99,10 +99,10 @@ public class StudentFrame extends JFrame {
 
 		data = new Object[TeacherSwingApplication.students.size()][3];
 		int i = 0;
-		for (Student Student : TeacherSwingApplication.students) {
-			data[i][0] = Student.getId();
-			data[i][1] = Student.getFirstName();
-			data[i][2] = Student.getLastName();
+		for (Student student : TeacherSwingApplication.students) {
+			data[i][0] = student.getId();
+			data[i][1] = student.getFirstName();
+			data[i][2] = student.getLastName();
 			i++;
 		}
 		swingStudentModel.setDataVector(data, columnNames);

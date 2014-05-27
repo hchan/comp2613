@@ -1,9 +1,7 @@
 package ca.bcit.comp2613.coursematerial.day07;
 
-import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.List;
 import java.util.UUID;
 
 import javax.swing.JButton;
@@ -16,58 +14,32 @@ import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
-import ca.bcit.comp2613.coursematerial.day07.model.Teacher;
-import ca.bcit.comp2613.coursematerial.day07.util.TeacherUtil;
 import ca.bcit.comp2613.coursematerial.day07.model.Student;
+import ca.bcit.comp2613.coursematerial.day07.model.Teacher;
 import ca.bcit.comp2613.coursematerial.day07.util.StudentUtil;
 
-public class TeacherSwingApplication {
+public class ViewClassFrame extends JFrame {
 
-	private JFrame frame;
 	private JTable table;
 	private JTextField firstNameTextField;
 	private JTextField lastNameTextField;
 	private JLabel lblLastName;
 	private JLabel lblId;
-	private NonEditableDefaultTableModel nonEditableDefaultTableModel;
+	private NonEditableDefaultTableModel swingStudentModel;
 	public String[] columnNames = new String[] { "id", "First Name",
 			"Last Name" };
 	private JTextField idTextField;
-	public static List<Teacher> teachers;
-	public static List<Student> students;
-	private JButton btnViewAllStudents;
-	private JButton btnViewClass;
+	private Teacher teacher;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					TeacherSwingApplication window = new TeacherSwingApplication();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the application.
-	 */
-	public TeacherSwingApplication() {
-		teachers = TeacherUtil.create100RandomTeachers();
-		students = StudentUtil.create1000RandomStudents();
-		StudentUtil.randomlyAssignStudentsToTeachers(teachers, students);
+	public ViewClassFrame(Teacher teacher) {
+		this.teacher = teacher;
 		initialize();
 		initTable();
 	}
 
 	private void initTable() {
 
-		// table = new JTable(swingTeacherModel);
+		// table = new JTable(swingStudentModel);
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		table.getSelectionModel().addListSelectionListener(
 				new ListSelectionListener() {
@@ -91,108 +63,95 @@ public class TeacherSwingApplication {
 					.getValueAt(table.getSelectedRow(), 1).toString());
 			lastNameTextField.setText(table.getModel()
 					.getValueAt(table.getSelectedRow(), 2).toString());
-		} catch (Exception e) {}
+		} catch (Exception e) {
+		}
 	}
 
 	public void doSave() {
 		String id = idTextField.getText();
 		String firstName = firstNameTextField.getText();
 		String lastName = lastNameTextField.getText();
-		Teacher teacher = new Teacher(id, firstName, lastName);
-		TeacherUtil.save(teachers, teacher);
-		//table.clearSelection();
+		Student student = new Student(id, firstName, lastName);
+		StudentUtil.save(TeacherSwingApplication.students, student);
+		// table.clearSelection();
 		refreshTable();
 	}
-	
+
 	public void doDelete() {
 		String id = idTextField.getText();
-		Teacher teacher = new Teacher(id, null, null);
-		TeacherUtil.delete(teachers, teacher);
+		Student student = new Student(id, null, null);
+		StudentUtil.delete(TeacherSwingApplication.students, student);
 		refreshTable();
 	}
-	
+
 	public void doNew() {
 		String id = UUID.randomUUID().toString();
 		idTextField.setText(id);
 		firstNameTextField.setText("");
 		lastNameTextField.setText("");
 	}
-	
-	public void viewAllStudents() {
-		StudentFrame studentFrame = new StudentFrame();
-		studentFrame.setVisible(true);
-	}
-	
-	public void viewClass() {
-		String id = idTextField.getText();
-		Teacher teacher = null;
-		teacher = TeacherUtil.findById(id, teachers);
-		if (teacher != null) {
-			ViewClassFrame viewClassFrame = new ViewClassFrame(teacher);
-			viewClassFrame.setVisible(true);
-		}	
-	}
 
 	private void refreshTable() {
-		// swingTeacherModel = new SwingTeacherModel();
+		// swingStudentModel = new SwingStudentModel();
 		Object[][] data = null;
-
-		data = new Object[teachers.size()][3];
-		int i = 0;
-		for (Teacher teacher : teachers) {
-			data[i][0] = teacher.getId();
-			data[i][1] = teacher.getFirstName();
-			data[i][2] = teacher.getLastName();
-			i++;
+		if (teacher.getStudents() != null) {
+			data = new Object[teacher.getStudents().size()][3];
+			int i = 0;
+			for (Student student : teacher.getStudents()) {
+				data[i][0] = student.getId();
+				data[i][1] = student.getFirstName();
+				data[i][2] = student.getLastName();
+				i++;
+			}
+			swingStudentModel.setDataVector(data, columnNames);
+			table.repaint();
 		}
-		nonEditableDefaultTableModel.setDataVector(data, columnNames);
-		table.repaint();
 	}
 
 	/**
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame = new JFrame();
-		frame.setBounds(100, 100, 601, 499);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
+
+		this.setBounds(100, 100, 601, 499);
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.getContentPane().setLayout(null);
 
 		// table = new JTable();
-		nonEditableDefaultTableModel = new NonEditableDefaultTableModel();
+		swingStudentModel = new NonEditableDefaultTableModel();
 
-		table = new JTable(nonEditableDefaultTableModel);
+		table = new JTable(swingStudentModel);
 
 		// table.setPreferredScrollableViewportSize(new Dimension(500, 70));
 		// table.setBounds(0, 11, 585, 247);
 		table.setFillsViewportHeight(true);
 		JScrollPane scrollPane = new JScrollPane(table);
 		scrollPane.setBounds(0, 11, 585, 247);
-		frame.getContentPane().add(scrollPane);
+		this.getContentPane().add(scrollPane);
 		// scrollPane.add(table);
 		// frame.getContentPane().add(table);
 
 		JLabel lblFirstName = new JLabel("First Name");
 		lblFirstName.setBounds(44, 330, 103, 14);
-		frame.getContentPane().add(lblFirstName);
+		this.getContentPane().add(lblFirstName);
 
 		firstNameTextField = new JTextField();
 		firstNameTextField.setBounds(159, 327, 325, 20);
-		frame.getContentPane().add(firstNameTextField);
+		this.getContentPane().add(firstNameTextField);
 		firstNameTextField.setColumns(10);
 
 		lastNameTextField = new JTextField();
 		lastNameTextField.setBounds(159, 371, 325, 20);
-		frame.getContentPane().add(lastNameTextField);
+		this.getContentPane().add(lastNameTextField);
 		lastNameTextField.setColumns(10);
 
 		lblLastName = new JLabel("Last Name");
 		lblLastName.setBounds(44, 374, 77, 14);
-		frame.getContentPane().add(lblLastName);
+		this.getContentPane().add(lblLastName);
 
 		lblId = new JLabel("id");
 		lblId.setBounds(44, 288, 46, 14);
-		frame.getContentPane().add(lblId);
+		this.getContentPane().add(lblId);
 
 		JButton btnSave = new JButton("Save");
 		btnSave.addActionListener(new ActionListener() {
@@ -201,7 +160,7 @@ public class TeacherSwingApplication {
 			}
 		});
 		btnSave.setBounds(44, 412, 89, 23);
-		frame.getContentPane().add(btnSave);
+		this.getContentPane().add(btnSave);
 
 		JButton btnDelete = new JButton("Delete");
 		btnDelete.addActionListener(new ActionListener() {
@@ -210,7 +169,7 @@ public class TeacherSwingApplication {
 			}
 		});
 		btnDelete.setBounds(169, 412, 89, 23);
-		frame.getContentPane().add(btnDelete);
+		this.getContentPane().add(btnDelete);
 
 		JButton btnNewButton = new JButton("New");
 		btnNewButton.addActionListener(new ActionListener() {
@@ -219,30 +178,12 @@ public class TeacherSwingApplication {
 			}
 		});
 		btnNewButton.setBounds(496, 260, 89, 23);
-		frame.getContentPane().add(btnNewButton);
+		this.getContentPane().add(btnNewButton);
 
 		idTextField = new JTextField();
 		idTextField.setEditable(false);
 		idTextField.setBounds(159, 285, 325, 20);
-		frame.getContentPane().add(idTextField);
+		this.getContentPane().add(idTextField);
 		idTextField.setColumns(10);
-		
-		btnViewAllStudents = new JButton("View all students");
-		btnViewAllStudents.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				viewAllStudents();
-			}
-		});
-		btnViewAllStudents.setBounds(0, 260, 121, 23);
-		frame.getContentPane().add(btnViewAllStudents);
-		
-		btnViewClass = new JButton("View Class");
-		btnViewClass.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				viewClass();
-			}
-		});
-		btnViewClass.setBounds(300, 412, 144, 23);
-		frame.getContentPane().add(btnViewClass);
 	}
 }

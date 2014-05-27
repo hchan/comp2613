@@ -51,5 +51,15 @@ public class TeacherUtil {
 		}
 	}
 
+	public static Teacher findById(String id, List<Teacher> teachers) {
+		for (Teacher teacherLoop :teachers) {
+			if (teacherLoop.getId().equals(id)) {
+				return teacherLoop;
+			}
+			
+		}
+		return null;
+	}
+
 	
 }

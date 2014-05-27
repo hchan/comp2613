@@ -24,15 +24,19 @@ public class StudentUtil {
 		return students;
 	}
 	
-	public static void randomlyAssignStudentsToTeachers(ArrayList<Teacher> teachers,
-			ArrayList<Student> students) {
+	public static void randomlyAssignStudentsToTeachers(List<Teacher> teachers,
+			List<Student> students) {
 		int studentArraySize = students.size();
 		for (Teacher teacher: teachers) {
 			Random rand = new Random();
-			int randStudentIndex = rand.nextInt(studentArraySize);
+			
 			for (int i = 0; i < 10; i++) {
+				int randStudentIndex = rand.nextInt(studentArraySize);
 				Student randomStudent = students.get(randStudentIndex);
-				
+				if (teacher.getStudents() == null) {
+					teacher.setStudents(new ArrayList<Student>());					
+				}
+				teacher.getStudents().add(randomStudent);
 			}
 		}
 	}

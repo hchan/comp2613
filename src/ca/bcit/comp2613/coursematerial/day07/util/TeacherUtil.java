@@ -5,7 +5,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.UUID;
 
-import ca.bcit.comp2613.coursematerial.day06.model.Teacher;
+import ca.bcit.comp2613.coursematerial.day07.model.Teacher;
 
 public class TeacherUtil {
 
@@ -49,6 +49,16 @@ public class TeacherUtil {
 				break;
 			}
 		}
+	}
+
+	public static Teacher findById(String id, List<Teacher> teachers) {
+		for (Teacher teacherLoop :teachers) {
+			if (teacherLoop.getId().equals(id)) {
+				return teacherLoop;
+			}
+			
+		}
+		return null;
 	}
 
 	

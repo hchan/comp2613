@@ -6,6 +6,7 @@ import javax.swing.JFrame;
 import javax.swing.JTable;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 
 import javax.swing.JTextField;
@@ -17,6 +18,7 @@ import javax.swing.JButton;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.util.ArrayList;
 import java.util.Vector;
 
 import javax.swing.JScrollPane;
@@ -60,11 +62,17 @@ public class TeacherSwingApplication {
 
 	private void initTable() {
 		//swingTeacherModel = new SwingTeacherModel();
-	
-		 Object[][] data = {
-		        {"1", "Kathy", "Smith"},
-		        {"2", "Kathya", "Smiths"}
-		};
+		 Object[][] data = null;
+		ArrayList<Teacher> teachers = TeacherUtil.create100RandomTeachers();
+		data = new Object[teachers.size()][3];
+		int i = 0;
+		for (Teacher teacher : teachers) {
+			data[i][0] = teacher.getId();
+			data[i][1] = teacher.getFirstName();
+			data[i][2] = teacher.getLastName();
+			i++;
+		}
+		 
 		       
 		
 		swingTeacherModel.setDataVector(data, columnNames);
@@ -81,9 +89,6 @@ public class TeacherSwingApplication {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
-		//JScrollPane scrollPane = new JScrollPane();
-		//scrollPane.setBounds(0, 0, 2, 2);
-		//frame.getContentPane().add(scrollPane);
 		
 		//table = new JTable();
 		swingTeacherModel = new SwingTeacherModel();
@@ -92,9 +97,14 @@ public class TeacherSwingApplication {
 		table.repaint();
 		
 		
-		
-		table.setBounds(0, 11, 585, 247);
-		frame.getContentPane().add(table);
+		// table.setPreferredScrollableViewportSize(new Dimension(500, 70));
+		//table.setBounds(0, 11, 585, 247);
+		table.setFillsViewportHeight(true);
+		JScrollPane scrollPane = new JScrollPane(table);
+		scrollPane.setBounds(0, 11, 585, 247);
+		frame.getContentPane().add(scrollPane);
+		//scrollPane.add(table);
+		//frame.getContentPane().add(table);
 		
 		JLabel lblFirstName = new JLabel("First Name");
 		lblFirstName.setBounds(44, 330, 103, 14);

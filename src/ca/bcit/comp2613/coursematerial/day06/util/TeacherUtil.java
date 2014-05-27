@@ -1,6 +1,7 @@
 package ca.bcit.comp2613.coursematerial.day06.util;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.UUID;
 
@@ -33,6 +34,17 @@ public class TeacherUtil {
 			}
 		}
 		
+	}
+
+	public static void delete(List<Teacher> teachers, Teacher teacher) {
+		Iterator<Teacher> iter = teachers.iterator();
+		while (iter.hasNext()) {
+			Teacher teacherLoop = iter.next();
+			if (teacherLoop.getId().equals(teacher.getId())) {
+				iter.remove();
+				break;
+			}
+		}
 	}
 
 	

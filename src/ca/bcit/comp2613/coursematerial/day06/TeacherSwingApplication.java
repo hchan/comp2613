@@ -107,6 +107,13 @@ public class TeacherSwingApplication {
 		//table.clearSelection();
 		refreshTable();
 	}
+	
+	public void doDelete() {
+		String id = idTextField.getText();
+		Teacher teacher = new Teacher(id, null, null);
+		TeacherUtil.delete(teachers, teacher);
+		refreshTable();
+	}
 
 	private void refreshTable() {
 		// swingTeacherModel = new SwingTeacherModel();
@@ -181,6 +188,7 @@ public class TeacherSwingApplication {
 		JButton btnDelete = new JButton("Delete");
 		btnDelete.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				doDelete();
 			}
 		});
 		btnDelete.setBounds(169, 412, 89, 23);

@@ -3,6 +3,7 @@ package ca.bcit.comp2613.coursematerial.day08.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -27,8 +28,9 @@ public class Student {
 	private String firstName;
 	private String lastName;
 
-	@ManyToMany(fetch=FetchType.EAGER)
-	@Fetch (FetchMode.JOIN) // note that the fetchmode will be select ... damn bug with Spring Data!
+	@ManyToMany(cascade=CascadeType.ALL)
+	//@ManyToMany//(fetch=FetchType.EAGER)
+	//@Fetch (FetchMode.JOIN) // note that the fetchmode will be select ... damn bug with Spring Data!
 	@JoinTable(name = "teacher_student",
 	joinColumns = { @JoinColumn(name = "student_id") }, inverseJoinColumns = { @JoinColumn(name = "teacher_id") })
 	private List<Teacher> teachers;
@@ -67,7 +69,7 @@ public class Student {
 	@Override
 	public String toString() {
 		return "Student [id=" + id + ", firstName=" + firstName + ", lastName="
-				+ lastName + ", teachers=" + teachers + "]";
+				+ "lastName]";
 	}
 
 }

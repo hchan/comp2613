@@ -85,6 +85,7 @@ public class TeacherSwingApplication {
 		studentRepository = context
 				.getBean(StudentRepository.class);
 		teachers = copyIterator(teacherRepository.findAll().iterator());
+		students = copyIterator(studentRepository.findAll().iterator());
 		StudentUtil.randomlyAssignStudentsToTeachers(teachers, students);
 		initialize();
 		initTable();
@@ -124,15 +125,15 @@ public class TeacherSwingApplication {
 		String firstName = firstNameTextField.getText();
 		String lastName = lastNameTextField.getText();
 		Teacher teacher = new Teacher(id, firstName, lastName);
-		TeacherUtil.save(teachers, teacher);
+		teacherRepository.save(teacher);
 		//table.clearSelection();
 		refreshTable();
 	}
 	
 	public void doDelete() {
 		String id = idTextField.getText();
-		Teacher teacher = new Teacher(id, null, null);
-		TeacherUtil.delete(teachers, teacher);
+		//Teacher teacher = new Teacher(id, null, null);
+		teacherRepository.delete(id);
 		refreshTable();
 	}
 	
@@ -161,7 +162,7 @@ public class TeacherSwingApplication {
 	private void refreshTable() {
 		// swingTeacherModel = new SwingTeacherModel();
 		Object[][] data = null;
-
+		teachers = copyIterator(teacherRepository.findAll().iterator());
 		data = new Object[teachers.size()][3];
 		int i = 0;
 		for (Teacher teacher : teachers) {

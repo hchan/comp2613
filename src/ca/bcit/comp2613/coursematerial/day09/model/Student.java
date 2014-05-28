@@ -20,21 +20,36 @@ import org.hibernate.annotations.FetchMode;
 @Entity
 public class Student {
 
-
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	// let the datbase create the id (think sequence: 1, 2, 3, 4...)
 	private Long id;
 	private String firstName;
 	private String lastName;
 
+	@ManyToMany(fetch=FetchType.EAGER)
+	@Fetch (FetchMode.JOIN) // note that the fetchmode will be select ... damn bug with Spring Data!
+	@JoinTable(name = "teacher_student",
+	joinColumns = { @JoinColumn(name = "student_id") }, inverseJoinColumns = { @JoinColumn(name = "teacher_id") })
 	private List<Teacher> teachers;
 
+	public Student() {
+		
+	}
 	
+	
+	
+
+
 	public Student(Long id, String firstName, String lastName) {
 		super();
 		this.id = id;
 		this.firstName = firstName;
 		this.lastName = lastName;
 	}
-	
+
+
+
 	public Student(String id, String firstName, String lastName) {
 		super();
 		this.id = Long.parseLong(id);
@@ -42,10 +57,9 @@ public class Student {
 		this.lastName = lastName;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
-	}
-
+	// cool, I have a getter for Id - but no setter ...
+	// @GeneratedValue(strategy=GenerationType.AUTO) prevents us from using a
+	// setter at runtime
 	public Long getId() {
 		return id;
 	}

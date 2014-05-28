@@ -3,6 +3,8 @@ package ca.bcit.comp2613.coursematerial.day09;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.UUID;
 
@@ -16,6 +18,13 @@ import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.context.annotation.ImportResource;
+
+import ca.bcit.comp2613.coursematerial.day09.repository.StudentRepository;
+import ca.bcit.comp2613.coursematerial.day09.repository.TeacherRepository;
 import ca.bcit.comp2613.coursematerial.day09.model.Teacher;
 import ca.bcit.comp2613.coursematerial.day09.util.TeacherUtil;
 import ca.bcit.comp2613.coursematerial.day09.model.Student;
@@ -37,11 +46,14 @@ public class TeacherSwingApplication {
 	public static List<Student> students;
 	private JButton btnViewAllStudents;
 	private JButton btnViewClass;
+	private static TeacherRepository teacherRepository;
+	private static StudentRepository studentRepository;
 
 	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
+		
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -53,13 +65,26 @@ public class TeacherSwingApplication {
 			}
 		});
 	}
+	
+	public static <T> List<T> copyIterator(Iterator<T> iter) {
+	    List<T> copy = new ArrayList();
+	    while (iter.hasNext())
+	        copy.add(iter.next());
+	    return copy;
+	}
 
 	/**
 	 * Create the application.
 	 */
 	public TeacherSwingApplication() {
-		teachers = TeacherUtil.create100RandomTeachers();
-		students = StudentUtil.create1000RandomStudents();
+		ConfigurableApplicationContext context = SpringApplication
+				.run(MySQLConfig.class);
+
+		teacherRepository = context
+				.getBean(TeacherRepository.class);
+		studentRepository = context
+				.getBean(StudentRepository.class);
+		teachers = copyIterator(teacherRepository.findAll().iterator());
 		StudentUtil.randomlyAssignStudentsToTeachers(teachers, students);
 		initialize();
 		initTable();

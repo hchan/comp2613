@@ -1,4 +1,4 @@
-package ca.bcit.comp2613.coursematerial.day09.repository;
+package ca.bcit.comp2613.coursematerial.day08.repository;
 
 
 import java.util.List;
@@ -8,7 +8,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 
-import ca.bcit.comp2613.coursematerial.day09.model.Student;
+import ca.bcit.comp2613.coursematerial.day08.model.Student;
 
 
 public interface StudentRepository extends CrudRepository<Student, Long> {

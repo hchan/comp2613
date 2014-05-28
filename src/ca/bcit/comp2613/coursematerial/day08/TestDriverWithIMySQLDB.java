@@ -1,4 +1,4 @@
-package ca.bcit.comp2613.coursematerial.day09;
+package ca.bcit.comp2613.coursematerial.day08;
 
 
 import org.springframework.boot.SpringApplication;
@@ -6,8 +6,8 @@ import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.ImportResource;
 
-import ca.bcit.comp2613.coursematerial.day09.model.Teacher;
-import ca.bcit.comp2613.coursematerial.day09.repository.TeacherRepository;
+import ca.bcit.comp2613.coursematerial.day08.model.Teacher;
+import ca.bcit.comp2613.coursematerial.day08.repository.TeacherRepository;
 
 @EnableAutoConfiguration
 @ImportResource("applicationContext.xml")

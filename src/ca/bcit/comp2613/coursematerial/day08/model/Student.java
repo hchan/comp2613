@@ -1,4 +1,4 @@
-package ca.bcit.comp2613.coursematerial.day09.model;
+package ca.bcit.comp2613.coursematerial.day08.model;
 
 import java.util.ArrayList;
 import java.util.List;

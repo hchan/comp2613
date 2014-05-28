@@ -8,6 +8,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.UUID;
 
+import javax.persistence.EntityManagerFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -23,6 +24,7 @@ import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.ImportResource;
 
+import ca.bcit.comp2613.coursematerial.day09.repository.CustomQueryHelper;
 import ca.bcit.comp2613.coursematerial.day09.repository.StudentRepository;
 import ca.bcit.comp2613.coursematerial.day09.repository.TeacherRepository;
 import ca.bcit.comp2613.coursematerial.day09.model.Teacher;
@@ -48,7 +50,7 @@ public class TeacherSwingApplication {
 	private JButton btnViewClass;
 	public static TeacherRepository teacherRepository;
 	public static StudentRepository studentRepository;
-
+	public static CustomQueryHelper customQueryHelper;
 	/**
 	 * Launch the application.
 	 */
@@ -84,9 +86,11 @@ public class TeacherSwingApplication {
 				.getBean(TeacherRepository.class);
 		studentRepository = context
 				.getBean(StudentRepository.class);
+		EntityManagerFactory emf = (EntityManagerFactory) context.getBean("entityManagerFactory");
+		customQueryHelper = new CustomQueryHelper(emf);
 		teachers = copyIterator(teacherRepository.findAll().iterator());
 		students = copyIterator(studentRepository.findAll().iterator());
-		StudentUtil.randomlyAssignStudentsToTeachers(teachers, students);
+		//StudentUtil.randomlyAssignStudentsToTeachers(teachers, students);
 		initialize();
 		initTable();
 	}

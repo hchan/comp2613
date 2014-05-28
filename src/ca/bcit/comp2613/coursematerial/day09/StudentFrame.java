@@ -71,10 +71,15 @@ public class StudentFrame extends JFrame {
 	}
 
 	public void doSave() {
-		//String id = idTextField.getText();
+		String id = idTextField.getText();
 		String firstName = firstNameTextField.getText();
 		String lastName = lastNameTextField.getText();
-		Student student = new Student((Long)null, firstName, lastName);
+		Student student = null;
+		if (id.equals("")) {
+			student = new Student((Long)null, firstName, lastName);
+		} else {
+			student = new Student(id, firstName, lastName);
+		}
 		TeacherSwingApplication.studentRepository.save(student);
 		//table.clearSelection();
 		refreshTable();

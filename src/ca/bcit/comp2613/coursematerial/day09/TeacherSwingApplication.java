@@ -46,8 +46,8 @@ public class TeacherSwingApplication {
 	public static List<Student> students;
 	private JButton btnViewAllStudents;
 	private JButton btnViewClass;
-	private static TeacherRepository teacherRepository;
-	private static StudentRepository studentRepository;
+	public static TeacherRepository teacherRepository;
+	public static StudentRepository studentRepository;
 
 	/**
 	 * Launch the application.

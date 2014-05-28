@@ -71,25 +71,24 @@ public class StudentFrame extends JFrame {
 	}
 
 	public void doSave() {
-		String id = idTextField.getText();
+		//String id = idTextField.getText();
 		String firstName = firstNameTextField.getText();
 		String lastName = lastNameTextField.getText();
-		Student student = new Student(id, firstName, lastName);
-		StudentUtil.save(TeacherSwingApplication.students, student);
+		Student student = new Student((Long)null, firstName, lastName);
+		TeacherSwingApplication.studentRepository.save(student);
 		//table.clearSelection();
 		refreshTable();
 	}
 	
 	public void doDelete() {
 		String id = idTextField.getText();
-		Student student = new Student(id, null, null);
-		StudentUtil.delete(TeacherSwingApplication.students, student);
+		TeacherSwingApplication.studentRepository.delete(Long.parseLong(id));
 		refreshTable();
 	}
 	
 	public void doNew() {
-		String id = UUID.randomUUID().toString();
-		idTextField.setText(id);
+		//String id = UUID.randomUUID().toString();
+		idTextField.setText("");
 		firstNameTextField.setText("");
 		lastNameTextField.setText("");
 	}
@@ -97,7 +96,7 @@ public class StudentFrame extends JFrame {
 	private void refreshTable() {
 		// swingStudentModel = new SwingStudentModel();
 		Object[][] data = null;
-
+		TeacherSwingApplication.students = TeacherSwingApplication.copyIterator(TeacherSwingApplication.studentRepository.findAll().iterator());
 		data = new Object[TeacherSwingApplication.students.size()][3];
 		int i = 0;
 		for (Student student : TeacherSwingApplication.students) {

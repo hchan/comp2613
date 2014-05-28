@@ -2,6 +2,8 @@ package ca.bcit.comp2613.coursematerial.day09;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 import javax.swing.JButton;
@@ -77,16 +79,18 @@ public class ViewClassFrame extends JFrame {
 	public void removeFromClass() {
 		String id = idTextField.getText();
 		
-		Student student = new Student(id, null, null);
-		TeacherUtil.removeFromClass (teacher, student);
+		//Student student = new Student(id, null, null);
+		//TeacherUtil.removeFromClass (teacher, student);
+		TeacherSwingApplication.customQueryHelper.removeStudentFromTeacher(teacher.getId(), Long.parseLong(id));
 		refreshTable();
 	}
 
 	public void doAdd() {
 		try {
 			String id = addTextField.getText();
-			Student student = new Student(id, null, null);
-			TeacherUtil.addToClass (teacher, student, TeacherSwingApplication.students);
+			//Student student = new Student(id, null, null);
+			//TeacherUtil.addToClass (teacher, student, TeacherSwingApplication.students);
+			TeacherSwingApplication.customQueryHelper.addStudentToTeacher(teacher.getId(), Long.parseLong(id));
 		} catch (Exception e) {}
 		refreshTable();
 	}
@@ -94,10 +98,11 @@ public class ViewClassFrame extends JFrame {
 	private void refreshTable() {
 		// swingStudentModel = new SwingStudentModel();
 		Object[][] data = null;
-		if (teacher.getStudents() != null) {
-			data = new Object[teacher.getStudents().size()][3];
+		List<Student> students = TeacherSwingApplication.customQueryHelper.getStudentsOfTeacher(teacher.getId());
+		if (students != null) {
+			data = new Object[students.size()][3];
 			int i = 0;
-			for (Student student : teacher.getStudents()) {
+			for (Student student : students) {
 				data[i][0] = student.getId();
 				data[i][1] = student.getFirstName();
 				data[i][2] = student.getLastName();

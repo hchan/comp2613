@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.UUID;
 
 import javax.persistence.EntityManagerFactory;
+import javax.sql.DataSource;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -19,18 +20,18 @@ import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.context.ConfigurableApplicationContext;
-import org.springframework.context.annotation.ImportResource;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.orm.jpa.EntityManagerHolder;
+import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
+import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
+import org.springframework.transaction.support.TransactionSynchronizationManager;
 
+import ca.bcit.comp2613.coursematerial.day09.model.Student;
+import ca.bcit.comp2613.coursematerial.day09.model.Teacher;
 import ca.bcit.comp2613.coursematerial.day09.repository.CustomQueryHelper;
 import ca.bcit.comp2613.coursematerial.day09.repository.StudentRepository;
 import ca.bcit.comp2613.coursematerial.day09.repository.TeacherRepository;
-import ca.bcit.comp2613.coursematerial.day09.model.Teacher;
 import ca.bcit.comp2613.coursematerial.day09.util.TeacherUtil;
-import ca.bcit.comp2613.coursematerial.day09.model.Student;
-import ca.bcit.comp2613.coursematerial.day09.util.StudentUtil;
 
 public class TeacherSwingApplication {
 
@@ -79,20 +80,52 @@ public class TeacherSwingApplication {
 	 * Create the application.
 	 */
 	public TeacherSwingApplication() {
-		ConfigurableApplicationContext context = SpringApplication
-				.run(MySQLConfig.class);
+		ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
+		
 
-		teacherRepository = context
-				.getBean(TeacherRepository.class);
-		studentRepository = context
-				.getBean(StudentRepository.class);
-		EntityManagerFactory emf = (EntityManagerFactory) context.getBean("entityManagerFactory");
+		for (String beanDefinitionName : context.getBeanDefinitionNames()) {
+			System.out.println(beanDefinitionName);
+		}
+		
+		DataSource dataSource = (DataSource) context.getBean("dataSource");
+		 HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
+		    vendorAdapter.setGenerateDdl(false);
+		LocalContainerEntityManagerFactoryBean localContainerEntityManagerFactoryBean = new LocalContainerEntityManagerFactoryBean();
+		localContainerEntityManagerFactoryBean.setJpaVendorAdapter(vendorAdapter);
+		localContainerEntityManagerFactoryBean.setPackagesToScan(TeacherSwingApplication.class.getPackage().getName());
+		
+		localContainerEntityManagerFactoryBean.setDataSource(dataSource);
+		localContainerEntityManagerFactoryBean.afterPropertiesSet();
+		
+		EntityManagerFactory emf  = localContainerEntityManagerFactoryBean.getObject();
+		//final JpaTransactionManager xactManager = new JpaTransactionManager(emf);
+		//EntityManagerFactory emf = (EntityManagerFactory) context.getBean("entityManagerFactory");
+		//EntityManagerFactory emf = localContainerEntityManagerFactoryBean.getNativeEntityManagerFactory();
+		/*
+		final JpaRepositoryFactory jpaRepositoryFactory = new JpaRepositoryFactory(emf.createEntityManager());
+		jpaRepositoryFactory.addRepositoryProxyPostProcessor(new RepositoryProxyPostProcessor() {
+			
+		
+		    @Override
+		    public void postProcess(ProxyFactory factory) {
+		    	factory.addAdvice(new TransactionInterceptor(xactManager, new MatchAlwaysTransactionAttributeSource()));
+		    }
+		});
+		*/
+		teacherRepository = context.getBean(TeacherRepository.class);
+		studentRepository = context.getBean(StudentRepository.class);
+		//teacherRepository = jpaRepositoryFactory.getRepository(TeacherRepository.class);
+		//studentRepository = jpaRepositoryFactory.getRepository(StudentRepository.class);
 		customQueryHelper = new CustomQueryHelper(emf);
 		teachers = copyIterator(teacherRepository.findAll().iterator());
 		students = copyIterator(studentRepository.findAll().iterator());
 		//StudentUtil.randomlyAssignStudentsToTeachers(teachers, students);
+		
+		TransactionSynchronizationManager.bindResource(emf, new EntityManagerHolder(emf.createEntityManager()));
+		
 		initialize();
 		initTable();
+		context.close();
 	}
 
 	private void initTable() {

@@ -16,9 +16,11 @@ import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+
 import ca.bcit.comp2613.coursematerial.day06.model.Teacher;
 import ca.bcit.comp2613.coursematerial.day06.util.TeacherUtil;
-
+@EnableAutoConfiguration
 public class TeacherSwingApplication {
 
 	private JFrame frame;

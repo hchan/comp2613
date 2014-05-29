@@ -1,0 +1,7 @@
+Note that the maven https://code.google.com/p/onejar-maven-plugin/ plugin
+is pretty cool in concept, but in practice, packaging Swing is a beast and
+Swing likes it best when jars are exploded
+the combination of:
+maven-jar-plugin (to generate the main jar)
+maven-dependency-plugin (to copy the dependencies)
+maven-antrun-plugin (to make the zip) is a better soln

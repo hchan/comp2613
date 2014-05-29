@@ -20,10 +20,18 @@ import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
+import org.springframework.aop.framework.ProxyFactory;
+import org.springframework.boot.SpringApplication;
+import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.data.jpa.repository.support.JpaRepositoryFactory;
+import org.springframework.data.repository.core.support.RepositoryProxyPostProcessor;
 import org.springframework.orm.jpa.EntityManagerHolder;
+import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
+import org.springframework.transaction.interceptor.MatchAlwaysTransactionAttributeSource;
+import org.springframework.transaction.interceptor.TransactionInterceptor;
 import org.springframework.transaction.support.TransactionSynchronizationManager;
 
 import ca.bcit.comp2613.coursematerial.day09.model.Student;
@@ -80,13 +88,17 @@ public class TeacherSwingApplication {
 	 * Create the application.
 	 */
 	public TeacherSwingApplication() {
-		ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
+		//ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
 		
+		ConfigurableApplicationContext context = SpringApplication
+				.run(MySQLConfig.class);
 
 		for (String beanDefinitionName : context.getBeanDefinitionNames()) {
 			System.out.println(beanDefinitionName);
 		}
 		
+		EntityManagerFactory emf  = (EntityManagerFactory) context.getBean("entityManagerFactory");
+		/*
 		DataSource dataSource = (DataSource) context.getBean("dataSource");
 		 HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
 		    vendorAdapter.setGenerateDdl(false);
@@ -98,34 +110,38 @@ public class TeacherSwingApplication {
 		localContainerEntityManagerFactoryBean.afterPropertiesSet();
 		
 		EntityManagerFactory emf  = localContainerEntityManagerFactoryBean.getObject();
-		//final JpaTransactionManager xactManager = new JpaTransactionManager(emf);
+		
+		final JpaTransactionManager xactManager = new JpaTransactionManager(emf);
 		//EntityManagerFactory emf = (EntityManagerFactory) context.getBean("entityManagerFactory");
 		//EntityManagerFactory emf = localContainerEntityManagerFactoryBean.getNativeEntityManagerFactory();
-		/*
+		
 		final JpaRepositoryFactory jpaRepositoryFactory = new JpaRepositoryFactory(emf.createEntityManager());
 		jpaRepositoryFactory.addRepositoryProxyPostProcessor(new RepositoryProxyPostProcessor() {
-			
+	
 		
 		    @Override
 		    public void postProcess(ProxyFactory factory) {
 		    	factory.addAdvice(new TransactionInterceptor(xactManager, new MatchAlwaysTransactionAttributeSource()));
 		    }
 		});
+		
+		
+		teacherRepository = jpaRepositoryFactory.getRepository(TeacherRepository.class);
+		studentRepository = jpaRepositoryFactory.getRepository(StudentRepository.class);
+		//TransactionSynchronizationManager.bindResource(emf, new EntityManagerHolder(emf.createEntityManager()));
 		*/
 		teacherRepository = context.getBean(TeacherRepository.class);
 		studentRepository = context.getBean(StudentRepository.class);
-		//teacherRepository = jpaRepositoryFactory.getRepository(TeacherRepository.class);
-		//studentRepository = jpaRepositoryFactory.getRepository(StudentRepository.class);
 		customQueryHelper = new CustomQueryHelper(emf);
 		teachers = copyIterator(teacherRepository.findAll().iterator());
 		students = copyIterator(studentRepository.findAll().iterator());
 		//StudentUtil.randomlyAssignStudentsToTeachers(teachers, students);
 		
-		TransactionSynchronizationManager.bindResource(emf, new EntityManagerHolder(emf.createEntityManager()));
+
 		
 		initialize();
 		initTable();
-		context.close();
+		//context.close(); // shouldn't close this here
 	}
 
 	private void initTable() {

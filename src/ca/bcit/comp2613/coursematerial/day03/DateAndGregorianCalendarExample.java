@@ -18,8 +18,8 @@ public class DateAndGregorianCalendarExample {
 		
 		Calendar cal = Calendar.getInstance();
 		Calendar yesterday = cal;
+		yesterday.add(Calendar.YEAR, -1);
 		yesterday.add(Calendar.DATE, -1);
-		
 		
 		System.out.println(dateFormat.format(yesterday.getTime()));
 		

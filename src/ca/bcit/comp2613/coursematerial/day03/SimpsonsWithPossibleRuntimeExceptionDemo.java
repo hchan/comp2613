@@ -13,7 +13,7 @@ public class SimpsonsWithPossibleRuntimeExceptionDemo {
 				int randInt = rand.nextInt();
 				if (randInt % 5 == 0) { // modulus - means 20% of the time (at least I think so ;))
 					System.out.println("Marge calls out - DINNER TIME");
-					throw new DinnerTimeException(randInt);
+					throw new DinnerTimeException(randInt); 
 				}
 				super.maggieTurnOnTV();
 			}

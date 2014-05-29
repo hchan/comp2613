@@ -4,8 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class AnnotationExample {
-	@SuppressWarnings("rawtypes")
-	
+	@SuppressWarnings("rawtypes")	
 	private ArrayList arrayList;
 	
 	

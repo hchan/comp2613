@@ -19,8 +19,8 @@ public class SimpsonsFamily {
 		// student TODO - create your own exception for Lisa
 		// i.e. IReadOnlyBooksException
 		// student TODO modify DontKnowHowException to add a ctor for your new Exception
-		maggieTurnOnTV();
-
+		
+			maggieTurnOnTV();
 	}
 
 	public void maggieTurnOnTV() throws DontKnowHowException {

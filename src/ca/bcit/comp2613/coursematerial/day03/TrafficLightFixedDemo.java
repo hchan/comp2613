@@ -12,8 +12,8 @@ public class TrafficLightFixedDemo {
 				countOfGreenLights++;
 			}
 		}
-		System.out.println(countOfGreenLights);
-		//checkTrafficLightWithEquals (trafficLights);
+		//System.out.println(countOfGreenLights);
+		checkTrafficLightWithEquals (trafficLights);
 	}
 
 	private static void checkTrafficLightWithEquals(TrafficLight[] trafficLights) {
@@ -27,6 +27,7 @@ public class TrafficLightFixedDemo {
 			}
 		}
 		System.out.println(countOfGreenLights);
+		System.out.println(TrafficLight.GREEN);
 	}
 
 }

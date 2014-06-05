@@ -1,5 +1,7 @@
 package ca.bcit.comp2613.coursematerial.day04;
 
+// by Henry Chan
+//a person class
 public class Person {
 	private String firstName;
 	private String lastName;

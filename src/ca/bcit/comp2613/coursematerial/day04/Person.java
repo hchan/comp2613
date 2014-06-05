@@ -1,5 +1,6 @@
 package ca.bcit.comp2613.coursematerial.day04;
 
+// a person class
 public class Person {
 	private String firstName;
 	private String lastName;

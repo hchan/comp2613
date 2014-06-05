@@ -2,6 +2,7 @@ package ca.bcit.comp2613.coursematerial.day04;
 
 // a person class
 // by Henry Chan 
+// fixed
 public class Person {
 	private String firstName;
 	private String lastName;

@@ -13,8 +13,7 @@ import org.apache.log4j.Logger;
  * 
  * @author Henry
  * 
- *         For those of you who don't know, I am a WoW Addict WoW stands for
- *         World Of Warcraft
+ *       
  *         So here's the problem. How powerful are my
  *         characters? 
  * 
@@ -33,6 +32,11 @@ import org.apache.log4j.Logger;
  *         characters again after we remove those pesky Horde spies
  *         
  *         7) Modify checkForPandaren : If we have any Pandaren races in our characters list, throw a DontHaveTheExpansionException
+ *         
+ *         
+ *         When you are finished, please commit this package as
+ *         ca.bcit.comp2613.<your student id>.wow in your GitHub project folder 
+ *         note that package name should *always* be in lowercase 
  *         
  *        
  */

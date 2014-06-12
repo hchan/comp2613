@@ -3,6 +3,7 @@ package ca.bcit.comp2613.coursematerial.day09;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -87,12 +88,27 @@ public class TeacherSwingApplication {
 	/**
 	 * Create the application.
 	 */
+	public static boolean useInMemoryDB = true;
 	public TeacherSwingApplication() {
 		//ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
 		
-		ConfigurableApplicationContext context = SpringApplication
-				.run(MySQLConfig.class);
-
+		ConfigurableApplicationContext context = null;
+		if (useInMemoryDB) {
+			context = SpringApplication.run(H2Config.class);
+			try {
+				org.h2.tools.Server.createWebServer(null).start();
+				DataSource dataSource = (DataSource) context.getBean("dataSource");
+				//org.apache.tomcat.jdbc.pool.DataSource tomcatDataSource = (org.apache.tomcat.jdbc.pool.DataSource) dataSource;
+				//int a = 5;
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		} else {
+			context = SpringApplication.run(MySQLConfig.class);
+		}
+		
+		
 		for (String beanDefinitionName : context.getBeanDefinitionNames()) {
 			System.out.println(beanDefinitionName);
 		}

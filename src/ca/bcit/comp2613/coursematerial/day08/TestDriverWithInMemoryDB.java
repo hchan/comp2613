@@ -9,6 +9,8 @@ import ca.bcit.comp2613.coursematerial.day08.model.Teacher;
 import ca.bcit.comp2613.coursematerial.day08.repository.TeacherRepository;
 
 @EnableAutoConfiguration
+// default DB is: http://www.h2database.com
+
 public class TestDriverWithInMemoryDB {
 	public static void main(String[] args) {
 		ConfigurableApplicationContext context = SpringApplication.run(TestDriverWithInMemoryDB.class); 

@@ -13,8 +13,8 @@ import org.apache.log4j.Logger;
  * 
  * @author Henry
  * 
- *         Copy this package to your repo (a package can be highlighting the package
- *         folder, right click and then copy).  If that fails, copy the files one by one ;)
+ *         Copy this package to your repo (a package can copied via 1) highlighting the package
+ *         folder, 2) right click and then 3) copy).  If that fails, copy the files one by one ;)
  *         
  *         
  *         So here's the problem. How powerful are my

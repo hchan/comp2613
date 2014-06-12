@@ -13,7 +13,7 @@ public class FileUtilsDemo {
 
 	public static void main(String[] args) {
 		try {
-			FileUtils.writeStringToFile(new File("test.txt"), "Hello World");
+			FileUtils.writeStringToFile(new File("test.txt"), "Hello World again");
 			System.out
 					.println(FileUtils.readFileToString(new File("test.txt")));
 			findTempFileDirectory();

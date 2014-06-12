@@ -28,9 +28,10 @@ public class JacksonDemo {
 		try {
 			ByteArrayOutputStream baos = new ByteArrayOutputStream();
 			objectMapper.writeValue(baos, teachers);
-			System.out.println(baos.toString());
+			String teachersAsJSONString = baos.toString();
+			System.out.println(teachersAsJSONString);
 			
-			ArrayList<Teacher> teachersCopy = objectMapper.readValue(baos.toString(), new TypeReference<ArrayList<Teacher>>(){});
+			ArrayList<Teacher> teachersCopy = objectMapper.readValue(teachersAsJSONString, new TypeReference<ArrayList<Teacher>>(){});
 			
 			int randomIndex = 5;
 			System.out.println(teachersCopy.get(randomIndex).getFirstName());

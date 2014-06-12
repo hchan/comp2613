@@ -10,7 +10,15 @@ public class Log4jDemo {
 				Log4jDemo.class.getResourceAsStream("log4j.properties")
 				);
 		Logger log = Logger.getLogger(Log4jDemo.class);
+		
+		
+		
+		
+		
 		log.debug("This is a debug message");
+		
+		log.info("This is an info message");
+		
 		log.error("ERROR", new Exception("Doh"));
 	}
 }

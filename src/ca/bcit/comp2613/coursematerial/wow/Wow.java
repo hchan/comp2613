@@ -104,14 +104,14 @@ public class Wow {
 		return new Comparator<Character>() {
 			@Override
 			public int compare(Character character1, Character character2) {
-				// TODO supposed compares Characters by level, strength and armour
+				// TODO compares Characters by level, strength and armour
 				// note that this soln isn't quite correct,
 				// find the bug and fix it
 				int retval = Integer.valueOf(character1.getLevel()).compareTo(character2.getLevel());
 				if (retval == 0) {
-					retval = Integer.valueOf(character1.getStrength()).compareTo(character2.getStrength());
+					retval = Integer.valueOf(character1.getLevel()).compareTo(character2.getStrength());
 					if (retval == 0) {
-						retval = Integer.valueOf(character1.getArmour()).compareTo(character2.getArmour());
+						retval = Integer.valueOf(character1.getLevel()).compareTo(character2.getArmour());
 					}
 				}
 				return retval;
@@ -142,6 +142,7 @@ public class Wow {
 	
 	private static void checkForPandaren(ArrayList<Character> characters) {
 		// TODO if there are any PANDAREN races in our List, throw a DontHaveTheExpansionException
+		// hint, you should change this method signature
 	}
 
 }

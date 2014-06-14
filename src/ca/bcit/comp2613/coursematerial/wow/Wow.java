@@ -80,7 +80,8 @@ public class Wow {
 	private static ArrayList<Character> rollCharacters() {
 		// TODO create 100 Random Characters 
 				// The Race's assigned should be pretty random
-				// Each Character's level must be between 0 and 85
+				// Each Character's  
+				// level must be 1-85
 				// strength, 0-100
 				// armour, 0-100
 				// find and fix the bug

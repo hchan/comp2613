@@ -1,5 +1,7 @@
 package ca.bcit.comp2613.coursematerial.fth;
 
+import java.sql.SQLException;
+
 import javax.persistence.PersistenceUnit;
 
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
@@ -33,6 +35,11 @@ import ca.bcit.comp2613.coursematerial.day09.repository.TeacherRepository;
 </bean>
  */
 public class H2Config {
-
+	static {
+		try {
+			org.h2.tools.Server.createWebServer(null).start();
+		} catch (SQLException e) {
+		}
+	}
 	
 }

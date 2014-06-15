@@ -74,8 +74,8 @@ public class ForTheHordeSwingApplication {
 					// persist that arraylist to the in memory DB (H2)
 					//
 					// hints:
-					// ArrayList<Character> characters =  // ???.(textArea.getText());
-					// aCertainRepository.persist(characters);
+					//ArrayList<Character> characters =  ???.getCharactersArrayListFromXML(textArea.getText());
+					// aCertainRepository.aMethodSimilarToPersist(characters);
 				} catch (Exception e) {
 					log.error("", e);
 				}
@@ -101,8 +101,8 @@ public class ForTheHordeSwingApplication {
 				ArrayList<Character> characters = (ArrayList<Character>) customQueryHelper
 						.mysteriousQuery();
 				// TODO - sort the characters by Level
-				// note this can be achieve by a Comparator ... or if you are really keen, modify
-				// the SQL in mysteriousQuery with an 'order by'
+				// note this can be achieved by a Comparator ... or if you are really keen, modify
+				// the SQL in mysteriousQuery with an 'order by xxx' clause
 				String xmlStr = HordeUtil
 						.getCharacterArrayListAsString(characters);
 				textArea.setText(xmlStr);
@@ -116,8 +116,7 @@ public class ForTheHordeSwingApplication {
 		saveTextAreaToFile.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent actionEvent) {
 				// TODO
-				// okay, after we the the color queried out, generate a report
-				// of me
+				// okay, after query, generate a report
 				// in XML format and output it to charactersReport.xml (same
 				// dir as
 				// characters.xml)

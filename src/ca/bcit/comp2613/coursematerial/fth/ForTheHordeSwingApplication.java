@@ -10,7 +10,6 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
-import javax.swing.ScrollPaneConstants;
 
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
@@ -28,7 +27,10 @@ public class ForTheHordeSwingApplication {
 	private CharacterRepository characterRepository;
 	private CustomQueryHelper customQueryHelper;
 	private JScrollPane scrollPane;
-	
+	private JButton runMysteriousQueryButton;
+	private JButton insertXMLButton;
+	private JButton saveTextAreaToFile;
+
 	/**
 	 * @wbp.parser.entryPoint
 	 */
@@ -54,20 +56,21 @@ public class ForTheHordeSwingApplication {
 		ConfigurableApplicationContext context = null;
 		context = SpringApplication.run(H2Config.class);
 		characterRepository = context.getBean(CharacterRepository.class);
-		EntityManagerFactory emf  = (EntityManagerFactory) context.getBean("entityManagerFactory");
+		EntityManagerFactory emf = (EntityManagerFactory) context
+				.getBean("entityManagerFactory");
 		customQueryHelper = new CustomQueryHelper(emf);
-		
+
 		frame = new JFrame();
 		frame.setBounds(100, 100, 601, 499);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
-	
 
-		JButton insertXMLButton = new JButton("Insert XML");
+		insertXMLButton = new JButton("Insert XML");
 		insertXMLButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent actionEvent) {		
+			public void actionPerformed(ActionEvent actionEvent) {
 				try {
-					ArrayList<Character> characters = HordeUtil.getCharactersArrayListFromXML(textArea.getText());
+					ArrayList<Character> characters = HordeUtil
+							.getCharactersArrayListFromXML(textArea.getText());
 					characterRepository.save(characters);
 				} catch (Exception e) {
 					log.error("", e);
@@ -76,26 +79,53 @@ public class ForTheHordeSwingApplication {
 		});
 		insertXMLButton.setBounds(10, 336, 270, 23);
 		frame.getContentPane().add(insertXMLButton);
-		
-	
-		
+
 		textArea = new JTextArea();
-		//textArea.setBounds(0, 0, 585, 325);
-		//frame.getContentPane().add(textArea);
-		
+		// textArea.setBounds(0, 0, 585, 325);
+		// frame.getContentPane().add(textArea);
+
 		textArea.setLineWrap(true);
-		
+
 		scrollPane = new JScrollPane();
 		scrollPane.setViewportView(textArea);
 		scrollPane.setBounds(0, 0, 585, 325);
 		frame.getContentPane().add(scrollPane);
-	
-	
-		
-		
-		// report - I want the color of my report to be ... green (hint as in the color
-		// his skin http://wowpedia.org/File:Grom_Glowei_Cropped.jpg?version=a9ab91e8ee037e2a547ee570eb42a117
-		// okay, after we the the color queried out, generate a report of me
-		// in JSON format and output it to charactersReport.xml (same dir as characters.xml)
+
+		runMysteriousQueryButton = new JButton("Run Mysterious Query");
+		runMysteriousQueryButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ArrayList<Character> characters = (ArrayList<Character>) customQueryHelper
+						.mysteriousQuery();
+				// TODO - sort the characters by Level
+				// note this can be achieve by a Comparator ... or if you are really keen, modify
+				// the SQL in mysteriousQuery with an 'order by'
+				String xmlStr = HordeUtil
+						.getCharacterArrayListAsString(characters);
+				textArea.setText(xmlStr);
+
+			}
+		});
+		runMysteriousQueryButton.setBounds(10, 370, 270, 23);
+		frame.getContentPane().add(runMysteriousQueryButton);
+
+		saveTextAreaToFile = new JButton("Save Text Area To File");
+		saveTextAreaToFile.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent actionEvent) {
+				// okay, after we the the color queried out, generate a report
+				// of me
+				// in JSON format and output it to charactersReport.xml (same
+				// dir as
+				// characters.xml)
+				String xmlStr = textArea.getText();
+				try {
+					HordeUtil.saveXMLToFile(xmlStr);
+				} catch (Exception e) {
+					log.error("", e);
+				}
+			}
+		});
+		saveTextAreaToFile.setBounds(10, 409, 270, 23);
+		frame.getContentPane().add(saveTextAreaToFile);
+
 	}
 }

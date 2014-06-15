@@ -21,16 +21,21 @@ public class CustomQueryHelper {
 		this.emf = emf;
 	}
 
+	// report - I want the color of my query report to be ... green (hint as in the
+	// color
+	// his skin
+	// http://wowpedia.org/File:Grom_Glowei_Cropped.jpg?version=a9ab91e8ee037e2a547ee570eb42a117
+	// )
+	
+
 	public List<Character> mysteriousQuery() {
 		List<Character> retval = null;
 		EntityManager em = null;
 		try {
 			em = emf.createEntityManager();
-			Query query = em
-					.createNativeQuery(
-							" select * from character",
-									Character.class);
-			//query.setParameter("teacher_id", teacherId);
+			Query query = em.createNativeQuery(
+					" select * from character where race=5", Character.class);
+			// query.setParameter("teacher_id", teacherId);
 			retval = query.getResultList();
 		} catch (Exception e) {
 
@@ -42,6 +47,5 @@ public class CustomQueryHelper {
 		}
 		return retval;
 	}
-	
 
 }

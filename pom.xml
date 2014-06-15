@@ -100,12 +100,10 @@
 						<phase>package</phase>
 						<configuration>
 							<tasks>
-							<!-- 
-								<echo message="${project.basedir}" />
-								<echo message="${project.name}" />
-								<echo message="${project.build.directory}" />
-							 -->
-							 <zip destfile="${project.basedir}/${project.name}.zip" basedir="${project.build.directory}"/>	
+								<!-- <echo message="${project.basedir}" /> <echo message="${project.name}" 
+									/> <echo message="${project.build.directory}" /> -->
+								<zip destfile="${project.basedir}/${project.name}.zip"
+									basedir="${project.build.directory}" />
 							</tasks>
 						</configuration>
 						<goals>
@@ -192,6 +190,11 @@
 			<groupId>log4j</groupId>
 			<artifactId>log4j</artifactId>
 			<version>1.2.17</version>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.dataformat</groupId>
+			<artifactId>jackson-dataformat-xml</artifactId>
+			<version>2.4.0</version>
 		</dependency>
 		<dependency>
 			<groupId>org.codehaus.jackson</groupId>

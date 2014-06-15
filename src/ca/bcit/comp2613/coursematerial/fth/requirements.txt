@@ -1,0 +1,23 @@
+1) download this package to your own repo
+2) rename this package to ca.bcit.comp2613.<your student id>.fth
+	* note package names are always lowercase
+3) if things don't compile properly, make sure to fix your pom.xml
+4) Run HordeUtilTestDriver ... you'll get an InvalidDirectoryException
+	* fix this by fixing HordeUtil.getFile
+5) Modify HordeUtil.createJacksonXmlMapper to create an ObjectMapper that will map to XML instead of JSON
+6) Run HordeUtilTestDriver again and a file called characters.xml will be generated.
+	* I'll leave it to you to figure out where this file will be generated, however the output of this will
+	be needed later on
+	
+	
+7) Start up ForTheHordeSwingApplication.  Paste the contents of the above step and click "Insert XML"
+	* this should save the array of hordes to a DB
+8) Run the Mysterious Query
+	* mysterious query should query the DB with a mysterious query ;)
+	* this mysterious query will return an arrayList
+	* the button action however should ALSO grab the results back and put it in the text area box
+		sorted by Level
+9) Save the results of the textArea box (after the query) to a File (charactersReport.xml)
+10) push your changes on your repo to GitHub
+
+Good luck!

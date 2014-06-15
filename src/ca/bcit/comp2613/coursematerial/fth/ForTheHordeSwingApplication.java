@@ -69,9 +69,13 @@ public class ForTheHordeSwingApplication {
 		insertXMLButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent actionEvent) {
 				try {
-					ArrayList<Character> characters = HordeUtil
-							.getCharactersArrayListFromXML(textArea.getText());
-					characterRepository.save(characters);
+					// TODO
+					// convert the contents from the textarea to an ArrayList<Character>
+					// persist that arraylist to the in memory DB (H2)
+					//
+					// hints:
+					// ArrayList<Character> characters =  // ???.(textArea.getText());
+					// aCertainRepository.persist(characters);
 				} catch (Exception e) {
 					log.error("", e);
 				}
@@ -111,9 +115,10 @@ public class ForTheHordeSwingApplication {
 		saveTextAreaToFile = new JButton("Save Text Area To File");
 		saveTextAreaToFile.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent actionEvent) {
+				// TODO
 				// okay, after we the the color queried out, generate a report
 				// of me
-				// in JSON format and output it to charactersReport.xml (same
+				// in XML format and output it to charactersReport.xml (same
 				// dir as
 				// characters.xml)
 				String xmlStr = textArea.getText();

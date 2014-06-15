@@ -1,0 +1,15 @@
+Starting with assignment 6, you have the OPTION of abandoning your project, and teaming up with another classmate.  If you do so, update your githubURL in the D2L dropbox.
+
+There is definitely more work (and more complexity) in the 2nd half of this course.  Just wanted to give you guys a fair warning ;)
+
+Also, I want to take this chance to say ... Feel free to post your GitHub URL in this Discussion Forum.
+
+3 reasons:
+
+1) you might be proud of your work and want to share it.  This way of thinking may be quite different from the traditional courses at BCIT, but in the real world, there's a term for this: its called open source.  You share your code, and you have the chance to read other people's code.  If you want, you can Star someone's repository.  Personally I'm a big fan of open source and I believe the more code you read, the stronger the programmer you will be.
+
+2) you might be LFG (Looking For Group).  Again, starting with assignment 6, you have the option of working in a team size of 2.
+
+3) it will give you more practice with Git.  Believe me, you learn any SCM (Source Control Mangement) tool best when you work as a team.  You might step on each other toes, but I'd rather you make your Git mistakes *HERE* in the academic world rather than in the industry world.
+
+Again, posting your GitHub URL for your project to this discussion forum is totally optional, but highly recommended.  If programming is your future career path, sooner or later someone is going to read your code and you'll be reading other people's code.  Now is as good as any other time to share ;)

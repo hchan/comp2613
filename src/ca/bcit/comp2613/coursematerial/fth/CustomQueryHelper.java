@@ -22,12 +22,10 @@ public class CustomQueryHelper {
 	}
 
 	// report - I want the color of my query report to be ... green (hint as in the
-	// color
+	// color of
 	// his skin
 	// http://wowpedia.org/File:Grom_Glowei_Cropped.jpg?version=a9ab91e8ee037e2a547ee570eb42a117
 	// )
-	
-
 	public List<Character> mysteriousQuery() {
 		List<Character> retval = null;
 		EntityManager em = null;

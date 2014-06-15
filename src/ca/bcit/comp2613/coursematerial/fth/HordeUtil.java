@@ -8,6 +8,11 @@ import java.util.Random;
 
 import org.apache.commons.io.FileUtils;
 
+import ca.bcit.comp2613.coursematerial.day02.model.Teacher;
+
+import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 
@@ -42,14 +47,24 @@ public class HordeUtil {
 	
 	// save this XML to the same directory where HordeUtilTestDriver is
 	public static void saveCharactersToXMLFile(String characterArrayListAsString) throws InvalidDirectoryException, IOException {
-		String fileNameStr = System.getProperty("user.dir") + File.separator + "src" + File.separator + 
-				HordeUtilTestDriver.class.getPackage().getName().replace(".", File.separator) + File.separator + "characters.xml";
-		File file = new File(fileNameStr);
-		if (!file.getParentFile().exists()) {
-			// note, there is something not quite right about fileNameStr ... fix the bug please
+		
+		File file = getFile("characters.xml");
+		if (!file.getParentFile().exists()) {			
 			throw new InvalidDirectoryException(file.getParent());
 		}
 		FileUtils.writeStringToFile(file, characterArrayListAsString);
+	}
+	
+	private static File getFile(String name) {
+		// note, there is something not quite right about fileStr ... fix the bug please
+		String fileStr = System.getProperty("user.dir") + File.separator + "src" + File.separator + 
+				HordeUtilTestDriver.class.getPackage().getName().replace(".", File.separator) + File.separator + name;
+		return new File(fileStr);
+	}
+	
+	public static ArrayList<Character> getCharactersArrayListFromXML(String xmlStr) throws JsonParseException, JsonMappingException, IOException {
+		ObjectMapper objectMapper = createJacksonMapper();
+		return objectMapper.readValue(xmlStr, new TypeReference<ArrayList<Character>>(){});
 	}
 
 	private static ObjectMapper createJacksonMapper() {

@@ -1,10 +1,22 @@
 package ca.bcit.comp2613.coursematerial.fth;
 
+import javax.annotation.Generated;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
 public class Character {
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Integer id;
 	private Race race;
 	private int level;
 	private int strength;
 	private int armour;
+	
+	public Character() {}
 	
 	public Character(Race race, int level, int strength, int armour) {
 		super();
@@ -13,6 +25,17 @@ public class Character {
 		this.strength = strength;
 		this.armour = armour;
 	}
+	
+	public Integer getId() {
+		return id;
+	}
+
+	//public void setId(Integer id) {
+	//	this.id = id;
+	//}
+
+
+
 	public Race getRace() {
 		return race;
 	}

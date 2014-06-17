@@ -17,8 +17,8 @@ import org.apache.log4j.Logger;
  *         folder, 2) right click and then 3) copy).  If that fails, copy the files one by one ;)
  *         
  *         
- *         So here's the problem. How powerful are my
- *         characters? 
+ *         WoW - World Of Warcraft questions
+ *         
  * 
  *         1) Modify the Race enum to include HUMAN 
  *         
@@ -36,16 +36,18 @@ import org.apache.log4j.Logger;
  *         
  *         7) Modify checkForPandaren : If we have any Pandaren races in our characters list, throw a DontHaveTheExpansionException
  *         
+ *         8) Bonus: read the comments of the method: myCharactersAfterMyArchNemesisHacksIntoMyAccount and implement getLevelOfMissingCharacter
  *         
  *         When you are finished, please commit this package as
  *         ca.bcit.comp2613.<your student id>.wow in your GitHub project folder 
- *         note that package name should *always* be in lowercase 
+ *         note that package name should *always* be lowercase 
  *         
  *        
  */
 public class Wow {
 	private static Random rand = new Random();
 	public static void main(String[] args) {
+		
 		ArrayList<Character> characters = rollCharacters();
 		Comparator<Character> characterComparator = createCharacterComparator();
 		Collections.sort(characters, characterComparator);
@@ -143,6 +145,48 @@ public class Wow {
 	private static void checkForPandaren(ArrayList<Character> characters) {
 		// TODO if there are any PANDAREN races in our List, throw a DontHaveTheExpansionException
 		// hint, you should change this method signature
+	}
+	
+	
+	/**
+	 * Bonus Question (2% of overall grade)
+	 * So here's the scenario:
+	 * I have 85 characters in my WoW account.  Ironically enough, each character's level is unique
+	 * i.e. I have a Level1, Level2, Level3 ... Level85 characters (although in a shuffled order)
+	 * Then one day, my arch-nemesis hacks into my account and DELETEs only one of my characters.
+	 * Write a program that finds out which character level he DELETEd.
+	 * Maximum marks will be given for efficiency.  It is possible to solve this problem by looping through
+	 * the arraylist just **ONCE**
+	 * Also note, that although this isn't necessarily a Java question, this is a permutation of an interview question
+	 * used by a few Fortune 100 companies.  
+	 * 
+	 * Its a true *computer science* question
+	 * Also note that if you can solve this question, most likely you have a greater computer science
+	 * mind than 90% of the instructors at BCIT and you're bored silly of this course because its too easy for you ;)
+	 * 
+	 * And just for the record, it took me *OVER* half an hour to solve this.  Its tricky ;)
+	 */
+	public static ArrayList<Character> myCharactersAfterMyArchNemesisHacksIntoMyAccount() {
+		ArrayList<Character> retval = new ArrayList<Character>();
+		for (int i = 1; i <= 85; i++) {
+			Character character = new Character(Race.ORC, i, i, i);
+			retval.add(character);
+		}
+		Collections.shuffle(retval);
+		// then my archNemesis randomly DELETE's one of my characters
+		Random random = new Random();
+		int randIndex = random.nextInt(86);
+		retval.remove(randIndex);		
+		return retval;
+	}
+	
+	// TODO
+	// Your turn!
+	// implement getLevelOfMissingCharacter
+	public static int getLevelOfMissingCharacter() {
+		ArrayList<Character> characters = myCharactersAfterMyArchNemesisHacksIntoMyAccount();
+		// from the characters above, find out which Level character is missing
+		return -1;
 	}
 
 }

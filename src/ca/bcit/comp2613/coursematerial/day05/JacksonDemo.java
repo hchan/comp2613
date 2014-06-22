@@ -5,13 +5,12 @@ package ca.bcit.comp2613.coursematerial.day05;
 
 import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
-import java.util.UUID;
-
-import org.codehaus.jackson.map.ObjectMapper;
-import org.codehaus.jackson.type.TypeReference;
 
 import ca.bcit.comp2613.coursematerial.day02.model.Teacher;
 import ca.bcit.comp2613.coursematerial.day05.util.TeacherUtil;
+
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 /**
  * @author Henry
@@ -30,8 +29,7 @@ public class JacksonDemo {
 			objectMapper.writeValue(baos, teachers);
 			String teachersAsJSONString = baos.toString();
 			System.out.println(teachersAsJSONString);
-			
-			ArrayList<Teacher> teachersCopy = objectMapper.readValue(teachersAsJSONString, new TypeReference<ArrayList<Teacher>>(){});
+			ArrayList<Teacher> teachersCopy = objectMapper.readValue(teachersAsJSONString,  new TypeReference<ArrayList<Teacher>>(){});
 			
 			int randomIndex = 5;
 			System.out.println(teachersCopy.get(randomIndex).getFirstName());

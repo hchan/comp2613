@@ -18,7 +18,7 @@ public class VanillaJDBC {
 	// yeah, I could make constants with some of the variables below
 	// I could ... do that finally close thing ...
 	// but then again ... Vanilla JDBC == Old Obsolete way
-	// THROWAWAY code below
+	// THROWAWAY (aka WTF) code below
 	public static void main(String[] args) throws Exception {
 		String driverClassName = "com.mysql.jdbc.Driver";
 		String url = "jdbc:mysql://sql3.freemysqlhosting.net/sql340330";

@@ -18,9 +18,9 @@ public class TestDriverWithIMySQLDB {
 		TeacherRepository teacherRepository = context.getBean(TeacherRepository.class);
 		
 		Teacher teacher = new Teacher();
-		teacher.setId("a00788076");		
-		teacher.setFirstName("HENRY");
-		teacher.setLastName("Chan");
+		teacher.setId("applesucks");		
+		teacher.setFirstName("Apple");
+		teacher.setLastName("Sucks");
 		teacherRepository.save(teacher); 
 		
 		context.close();

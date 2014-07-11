@@ -1,7 +1,8 @@
 package ca.bcit.comp2613.coursematerial.sakila.model;
 
-// Generated Jul 10, 2014 12:08:13 PM by Hibernate Tools 4.0.0
+// Generated Jul 10, 2014 8:59:31 PM by Hibernate Tools 4.0.0
 
+import java.math.BigDecimal;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
@@ -11,43 +12,43 @@ import javax.persistence.Embeddable;
 @Embeddable
 public class SalesByStoreId implements java.io.Serializable {
 
-	private Integer store;
-	private Integer manager;
-	private Integer totalSales;
+	private String store;
+	private String manager;
+	private BigDecimal totalSales;
 
 	public SalesByStoreId() {
 	}
 
-	public SalesByStoreId(Integer store, Integer manager, Integer totalSales) {
+	public SalesByStoreId(String store, String manager, BigDecimal totalSales) {
 		this.store = store;
 		this.manager = manager;
 		this.totalSales = totalSales;
 	}
 
-	@Column(name = "store")
-	public Integer getStore() {
+	@Column(name = "store", length = 101)
+	public String getStore() {
 		return this.store;
 	}
 
-	public void setStore(Integer store) {
+	public void setStore(String store) {
 		this.store = store;
 	}
 
-	@Column(name = "manager")
-	public Integer getManager() {
+	@Column(name = "manager", length = 91)
+	public String getManager() {
 		return this.manager;
 	}
 
-	public void setManager(Integer manager) {
+	public void setManager(String manager) {
 		this.manager = manager;
 	}
 
-	@Column(name = "total_sales")
-	public Integer getTotalSales() {
+	@Column(name = "total_sales", precision = 27)
+	public BigDecimal getTotalSales() {
 		return this.totalSales;
 	}
 
-	public void setTotalSales(Integer totalSales) {
+	public void setTotalSales(BigDecimal totalSales) {
 		this.totalSales = totalSales;
 	}
 

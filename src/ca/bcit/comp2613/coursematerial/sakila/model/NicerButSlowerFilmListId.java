@@ -1,7 +1,8 @@
 package ca.bcit.comp2613.coursematerial.sakila.model;
 
-// Generated Jul 10, 2014 12:08:13 PM by Hibernate Tools 4.0.0
+// Generated Jul 10, 2014 8:59:31 PM by Hibernate Tools 4.0.0
 
+import java.math.BigDecimal;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
@@ -11,21 +12,25 @@ import javax.persistence.Embeddable;
 @Embeddable
 public class NicerButSlowerFilmListId implements java.io.Serializable {
 
-	private Integer fid;
-	private Integer title;
-	private Integer description;
-	private Integer category;
-	private Integer price;
-	private Integer length;
-	private Integer rating;
-	private Integer actors;
+	private Short fid;
+	private String title;
+	private String description;
+	private String category;
+	private BigDecimal price;
+	private Short length;
+	private String rating;
+	private String actors;
 
 	public NicerButSlowerFilmListId() {
 	}
 
-	public NicerButSlowerFilmListId(Integer fid, Integer title,
-			Integer description, Integer category, Integer price,
-			Integer length, Integer rating, Integer actors) {
+	public NicerButSlowerFilmListId(String category) {
+		this.category = category;
+	}
+
+	public NicerButSlowerFilmListId(Short fid, String title,
+			String description, String category, BigDecimal price,
+			Short length, String rating, String actors) {
 		this.fid = fid;
 		this.title = title;
 		this.description = description;
@@ -37,74 +42,74 @@ public class NicerButSlowerFilmListId implements java.io.Serializable {
 	}
 
 	@Column(name = "FID")
-	public Integer getFid() {
+	public Short getFid() {
 		return this.fid;
 	}
 
-	public void setFid(Integer fid) {
+	public void setFid(Short fid) {
 		this.fid = fid;
 	}
 
 	@Column(name = "title")
-	public Integer getTitle() {
+	public String getTitle() {
 		return this.title;
 	}
 
-	public void setTitle(Integer title) {
+	public void setTitle(String title) {
 		this.title = title;
 	}
 
-	@Column(name = "description")
-	public Integer getDescription() {
+	@Column(name = "description", length = 65535)
+	public String getDescription() {
 		return this.description;
 	}
 
-	public void setDescription(Integer description) {
+	public void setDescription(String description) {
 		this.description = description;
 	}
 
-	@Column(name = "category")
-	public Integer getCategory() {
+	@Column(name = "category", nullable = false, length = 25)
+	public String getCategory() {
 		return this.category;
 	}
 
-	public void setCategory(Integer category) {
+	public void setCategory(String category) {
 		this.category = category;
 	}
 
-	@Column(name = "price")
-	public Integer getPrice() {
+	@Column(name = "price", precision = 4)
+	public BigDecimal getPrice() {
 		return this.price;
 	}
 
-	public void setPrice(Integer price) {
+	public void setPrice(BigDecimal price) {
 		this.price = price;
 	}
 
 	@Column(name = "length")
-	public Integer getLength() {
+	public Short getLength() {
 		return this.length;
 	}
 
-	public void setLength(Integer length) {
+	public void setLength(Short length) {
 		this.length = length;
 	}
 
-	@Column(name = "rating")
-	public Integer getRating() {
+	@Column(name = "rating", length = 5)
+	public String getRating() {
 		return this.rating;
 	}
 
-	public void setRating(Integer rating) {
+	public void setRating(String rating) {
 		this.rating = rating;
 	}
 
-	@Column(name = "actors")
-	public Integer getActors() {
+	@Column(name = "actors", length = 65535)
+	public String getActors() {
 		return this.actors;
 	}
 
-	public void setActors(Integer actors) {
+	public void setActors(String actors) {
 		this.actors = actors;
 	}
 

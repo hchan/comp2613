@@ -1,6 +1,6 @@
 package ca.bcit.comp2613.coursematerial.sakila.model;
 
-// Generated Jul 10, 2014 12:08:13 PM by Hibernate Tools 4.0.0
+// Generated Jul 10, 2014 8:59:31 PM by Hibernate Tools 4.0.0
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
@@ -11,21 +11,30 @@ import javax.persistence.Embeddable;
 @Embeddable
 public class StaffListId implements java.io.Serializable {
 
-	private Integer id;
-	private Integer name;
-	private Integer address;
-	private Integer zipCode;
-	private Integer phone;
-	private Integer city;
-	private Integer country;
-	private Integer sid;
+	private byte id;
+	private String name;
+	private String address;
+	private String zipCode;
+	private String phone;
+	private String city;
+	private String country;
+	private byte sid;
 
 	public StaffListId() {
 	}
 
-	public StaffListId(Integer id, Integer name, Integer address,
-			Integer zipCode, Integer phone, Integer city, Integer country,
-			Integer sid) {
+	public StaffListId(byte id, String address, String phone, String city,
+			String country, byte sid) {
+		this.id = id;
+		this.address = address;
+		this.phone = phone;
+		this.city = city;
+		this.country = country;
+		this.sid = sid;
+	}
+
+	public StaffListId(byte id, String name, String address, String zipCode,
+			String phone, String city, String country, byte sid) {
 		this.id = id;
 		this.name = name;
 		this.address = address;
@@ -36,75 +45,75 @@ public class StaffListId implements java.io.Serializable {
 		this.sid = sid;
 	}
 
-	@Column(name = "ID")
-	public Integer getId() {
+	@Column(name = "ID", nullable = false)
+	public byte getId() {
 		return this.id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(byte id) {
 		this.id = id;
 	}
 
-	@Column(name = "name")
-	public Integer getName() {
+	@Column(name = "name", length = 91)
+	public String getName() {
 		return this.name;
 	}
 
-	public void setName(Integer name) {
+	public void setName(String name) {
 		this.name = name;
 	}
 
-	@Column(name = "address")
-	public Integer getAddress() {
+	@Column(name = "address", nullable = false, length = 50)
+	public String getAddress() {
 		return this.address;
 	}
 
-	public void setAddress(Integer address) {
+	public void setAddress(String address) {
 		this.address = address;
 	}
 
-	@Column(name = "zip code")
-	public Integer getZipCode() {
+	@Column(name = "zip code", length = 10)
+	public String getZipCode() {
 		return this.zipCode;
 	}
 
-	public void setZipCode(Integer zipCode) {
+	public void setZipCode(String zipCode) {
 		this.zipCode = zipCode;
 	}
 
-	@Column(name = "phone")
-	public Integer getPhone() {
+	@Column(name = "phone", nullable = false, length = 20)
+	public String getPhone() {
 		return this.phone;
 	}
 
-	public void setPhone(Integer phone) {
+	public void setPhone(String phone) {
 		this.phone = phone;
 	}
 
-	@Column(name = "city")
-	public Integer getCity() {
+	@Column(name = "city", nullable = false, length = 50)
+	public String getCity() {
 		return this.city;
 	}
 
-	public void setCity(Integer city) {
+	public void setCity(String city) {
 		this.city = city;
 	}
 
-	@Column(name = "country")
-	public Integer getCountry() {
+	@Column(name = "country", nullable = false, length = 50)
+	public String getCountry() {
 		return this.country;
 	}
 
-	public void setCountry(Integer country) {
+	public void setCountry(String country) {
 		this.country = country;
 	}
 
-	@Column(name = "SID")
-	public Integer getSid() {
+	@Column(name = "SID", nullable = false)
+	public byte getSid() {
 		return this.sid;
 	}
 
-	public void setSid(Integer sid) {
+	public void setSid(byte sid) {
 		this.sid = sid;
 	}
 
@@ -117,9 +126,7 @@ public class StaffListId implements java.io.Serializable {
 			return false;
 		StaffListId castOther = (StaffListId) other;
 
-		return ((this.getId() == castOther.getId()) || (this.getId() != null
-				&& castOther.getId() != null && this.getId().equals(
-				castOther.getId())))
+		return (this.getId() == castOther.getId())
 				&& ((this.getName() == castOther.getName()) || (this.getName() != null
 						&& castOther.getName() != null && this.getName()
 						.equals(castOther.getName())))
@@ -138,15 +145,13 @@ public class StaffListId implements java.io.Serializable {
 				&& ((this.getCountry() == castOther.getCountry()) || (this
 						.getCountry() != null && castOther.getCountry() != null && this
 						.getCountry().equals(castOther.getCountry())))
-				&& ((this.getSid() == castOther.getSid()) || (this.getSid() != null
-						&& castOther.getSid() != null && this.getSid().equals(
-						castOther.getSid())));
+				&& (this.getSid() == castOther.getSid());
 	}
 
 	public int hashCode() {
 		int result = 17;
 
-		result = 37 * result + (getId() == null ? 0 : this.getId().hashCode());
+		result = 37 * result + this.getId();
 		result = 37 * result
 				+ (getName() == null ? 0 : this.getName().hashCode());
 		result = 37 * result
@@ -159,8 +164,7 @@ public class StaffListId implements java.io.Serializable {
 				+ (getCity() == null ? 0 : this.getCity().hashCode());
 		result = 37 * result
 				+ (getCountry() == null ? 0 : this.getCountry().hashCode());
-		result = 37 * result
-				+ (getSid() == null ? 0 : this.getSid().hashCode());
+		result = 37 * result + this.getSid();
 		return result;
 	}
 

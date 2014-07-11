@@ -1,7 +1,8 @@
 package ca.bcit.comp2613.coursematerial.sakila.model;
 
-// Generated Jul 10, 2014 12:08:13 PM by Hibernate Tools 4.0.0
+// Generated Jul 10, 2014 8:59:31 PM by Hibernate Tools 4.0.0
 
+import java.math.BigDecimal;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
@@ -11,32 +12,36 @@ import javax.persistence.Embeddable;
 @Embeddable
 public class SalesByFilmCategoryId implements java.io.Serializable {
 
-	private Integer category;
-	private Integer totalSales;
+	private String category;
+	private BigDecimal totalSales;
 
 	public SalesByFilmCategoryId() {
 	}
 
-	public SalesByFilmCategoryId(Integer category, Integer totalSales) {
+	public SalesByFilmCategoryId(String category) {
+		this.category = category;
+	}
+
+	public SalesByFilmCategoryId(String category, BigDecimal totalSales) {
 		this.category = category;
 		this.totalSales = totalSales;
 	}
 
-	@Column(name = "category")
-	public Integer getCategory() {
+	@Column(name = "category", nullable = false, length = 25)
+	public String getCategory() {
 		return this.category;
 	}
 
-	public void setCategory(Integer category) {
+	public void setCategory(String category) {
 		this.category = category;
 	}
 
-	@Column(name = "total_sales")
-	public Integer getTotalSales() {
+	@Column(name = "total_sales", precision = 27)
+	public BigDecimal getTotalSales() {
 		return this.totalSales;
 	}
 
-	public void setTotalSales(Integer totalSales) {
+	public void setTotalSales(BigDecimal totalSales) {
 		this.totalSales = totalSales;
 	}
 

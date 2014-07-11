@@ -13,11 +13,11 @@
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>1.0.2.RELEASE</version>
 		<exclusions>
-  <exclusion>
-    <artifactId>slf4j-api</artifactId>
-    <groupId>slf4j-api</groupId>
-  </exclusion>
-</exclusions>
+			<exclusion>
+				<artifactId>slf4j-api</artifactId>
+				<groupId>slf4j-api</groupId>
+			</exclusion>
+		</exclusions>
 	</parent>
 
 	<build>
@@ -202,7 +202,7 @@
 			<artifactId>jackson-dataformat-xml</artifactId>
 			<version>2.4.0</version>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>junit</groupId>     <!-- NOT org.junit here -->
 			<artifactId>junit-dep</artifactId>
@@ -217,12 +217,12 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
-			
+
 		</dependency>
 		<dependency>
 			<groupId>com.h2database</groupId>
 			<artifactId>h2</artifactId>
-		</dependency>		
+		</dependency>
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
@@ -233,11 +233,11 @@
 			<artifactId>hsqldb</artifactId>
 			<version>2.2.8</version>
 		</dependency>
-<!-- <dependency> -->
-<!-- 	<groupId>org.slf4j</groupId> -->
-<!-- 	<artifactId>slf4j-api</artifactId> -->
-<!-- 	<version>1.7.7</version> -->
-<!-- </dependency> -->
+		<!-- <dependency> -->
+		<!-- <groupId>org.slf4j</groupId> -->
+		<!-- <artifactId>slf4j-api</artifactId> -->
+		<!-- <version>1.7.7</version> -->
+		<!-- </dependency> -->
 
 
 	</dependencies>
@@ -250,33 +250,38 @@
 	</pluginRepositories>
 	<dependencyManagement>
 		<dependencies>
-<!-- 			<dependency> -->
-<!-- 				<groupId>org.slf4j</groupId> -->
-<!-- 				<artifactId>slf4j-api</artifactId> -->
-<!-- 				<version>1.5.11</version> -->
-<!-- 			</dependency> -->
-<!-- 			<dependency> -->
-<!-- 				<groupId>org.slf4j</groupId> -->
-<!-- 				<artifactId>jcl-over-slf4j</artifactId> -->
-<!-- 				<version>1.5.11</version> -->
-<!-- 			</dependency> -->
-<!-- 			<dependency> -->
-<!-- 				<groupId>org.slf4j</groupId> -->
-<!-- 				<artifactId>log4j-over-slf4j</artifactId> -->
-<!-- 				<version>1.5.11</version> -->
-<!-- 			</dependency> -->
+			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>slf4j-api</artifactId>
+				<version>1.5.11</version>
+			</dependency>
+			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>jcl-over-slf4j</artifactId>
+				<version>1.5.11</version>
+			</dependency>
+			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>log4j-over-slf4j</artifactId>
+				<version>1.5.11</version>
+			</dependency>
 			<dependency>
 				<groupId>org.slf4j</groupId>
 				<artifactId>jul-to-slf4j</artifactId>
 				<version>1.5.11</version>
 			</dependency>
+			<dependency>
+				<groupId>ch.qos.logback</groupId>
+				<artifactId>logback-classic</artifactId>
+				<version>0.9.20</version>
+			</dependency>
 		</dependencies>
 	</dependencyManagement>
 	<exclusions>
-     <!-- Exclude Commons Logging in favor of SLF4j -->
-     <exclusion>
-              <groupId>commons-logging</groupId>
-              <artifactId>commons-logging</artifactId>
-     </exclusion>
- </exclusions>
+		<!-- Exclude Commons Logging in favor of SLF4j -->
+		<exclusion>
+			<groupId>commons-logging</groupId>
+			<artifactId>commons-logging</artifactId>
+		</exclusion>
+	</exclusions>
 </project>

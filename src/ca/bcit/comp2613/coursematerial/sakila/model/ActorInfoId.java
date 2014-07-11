@@ -1,6 +1,6 @@
 package ca.bcit.comp2613.coursematerial.sakila.model;
 
-// Generated Jul 10, 2014 12:08:13 PM by Hibernate Tools 4.0.0
+// Generated Jul 10, 2014 8:59:31 PM by Hibernate Tools 4.0.0
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
@@ -11,55 +11,61 @@ import javax.persistence.Embeddable;
 @Embeddable
 public class ActorInfoId implements java.io.Serializable {
 
-	private Integer actorId;
-	private Integer firstName;
-	private Integer lastName;
-	private Integer filmInfo;
+	private short actorId;
+	private String firstName;
+	private String lastName;
+	private String filmInfo;
 
 	public ActorInfoId() {
 	}
 
-	public ActorInfoId(Integer actorId, Integer firstName, Integer lastName,
-			Integer filmInfo) {
+	public ActorInfoId(short actorId, String firstName, String lastName) {
+		this.actorId = actorId;
+		this.firstName = firstName;
+		this.lastName = lastName;
+	}
+
+	public ActorInfoId(short actorId, String firstName, String lastName,
+			String filmInfo) {
 		this.actorId = actorId;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.filmInfo = filmInfo;
 	}
 
-	@Column(name = "actor_id")
-	public Integer getActorId() {
+	@Column(name = "actor_id", nullable = false)
+	public short getActorId() {
 		return this.actorId;
 	}
 
-	public void setActorId(Integer actorId) {
+	public void setActorId(short actorId) {
 		this.actorId = actorId;
 	}
 
-	@Column(name = "first_name")
-	public Integer getFirstName() {
+	@Column(name = "first_name", nullable = false, length = 45)
+	public String getFirstName() {
 		return this.firstName;
 	}
 
-	public void setFirstName(Integer firstName) {
+	public void setFirstName(String firstName) {
 		this.firstName = firstName;
 	}
 
-	@Column(name = "last_name")
-	public Integer getLastName() {
+	@Column(name = "last_name", nullable = false, length = 45)
+	public String getLastName() {
 		return this.lastName;
 	}
 
-	public void setLastName(Integer lastName) {
+	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
 
-	@Column(name = "film_info")
-	public Integer getFilmInfo() {
+	@Column(name = "film_info", length = 65535)
+	public String getFilmInfo() {
 		return this.filmInfo;
 	}
 
-	public void setFilmInfo(Integer filmInfo) {
+	public void setFilmInfo(String filmInfo) {
 		this.filmInfo = filmInfo;
 	}
 
@@ -72,9 +78,7 @@ public class ActorInfoId implements java.io.Serializable {
 			return false;
 		ActorInfoId castOther = (ActorInfoId) other;
 
-		return ((this.getActorId() == castOther.getActorId()) || (this
-				.getActorId() != null && castOther.getActorId() != null && this
-				.getActorId().equals(castOther.getActorId())))
+		return (this.getActorId() == castOther.getActorId())
 				&& ((this.getFirstName() == castOther.getFirstName()) || (this
 						.getFirstName() != null
 						&& castOther.getFirstName() != null && this
@@ -92,8 +96,7 @@ public class ActorInfoId implements java.io.Serializable {
 	public int hashCode() {
 		int result = 17;
 
-		result = 37 * result
-				+ (getActorId() == null ? 0 : this.getActorId().hashCode());
+		result = 37 * result + this.getActorId();
 		result = 37 * result
 				+ (getFirstName() == null ? 0 : this.getFirstName().hashCode());
 		result = 37 * result

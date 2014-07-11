@@ -1,6 +1,7 @@
 package ca.bcit.comp2613.coursematerial.sakila;
 
 
+import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 
 import org.springframework.boot.SpringApplication;
@@ -19,8 +20,11 @@ public class SakilaTestDriver {
 		ConfigurableApplicationContext context = SpringApplication.run(SakilaTestDriver.class); 
 		
 		EntityManagerFactory emf = (EntityManagerFactory) context.getBean("entityManagerFactory");
-		Actor actor = emf.createEntityManager().find(Actor.class, 1);
-		System.out.println(actor);
+		EntityManager em = emf.createEntityManager();
+
+		Actor actor = em.find(Actor.class, Short.parseShort("1"));
+		System.out.println(actor.getFirstName());
+		System.out.println(actor.getFilmActors().iterator().next().getFilm().getTitle());
 		context.close();
 		
 	}

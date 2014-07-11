@@ -1,6 +1,6 @@
 package ca.bcit.comp2613.coursematerial.sakila.model;
 
-// Generated Jul 10, 2014 8:59:31 PM by Hibernate Tools 4.0.0
+// Generated Jul 10, 2014 9:29:20 PM by Hibernate Tools 4.0.0
 
 import java.math.BigDecimal;
 import javax.persistence.Column;

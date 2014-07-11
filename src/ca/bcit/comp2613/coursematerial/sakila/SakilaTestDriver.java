@@ -18,14 +18,23 @@ import ca.bcit.comp2613.coursematerial.sakila.model.Actor;
 public class SakilaTestDriver {
 	public static void main(String[] args) {
 		ConfigurableApplicationContext context = SpringApplication.run(SakilaTestDriver.class); 
+		ActorRepository actorRepository = context.getBean(ActorRepository.class);
+		Actor actor = actorRepository.findAll().iterator().next();
+		System.out.println(actor.getFirstName());
+		// not that the line below will break ... yeah repositories have problems. 
+		// System.out.println(actor.getFilmActors().iterator().next().getFilm().getTitle());
+		// soln is to doEmfQuery below
+		//doEmfQuery(context);
+		context.close();
 		
+	}
+
+	private static void doEmfQuery(ConfigurableApplicationContext context) {
 		EntityManagerFactory emf = (EntityManagerFactory) context.getBean("entityManagerFactory");
 		EntityManager em = emf.createEntityManager();
 
 		Actor actor = em.find(Actor.class, Short.parseShort("1"));
 		System.out.println(actor.getFirstName());
 		System.out.println(actor.getFilmActors().iterator().next().getFilm().getTitle());
-		context.close();
-		
 	}
 }

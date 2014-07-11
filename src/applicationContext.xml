@@ -43,10 +43,13 @@
 	<bean id="dataSource"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
-		<property name="url"
-			value="jdbc:mysql://sql3.freemysqlhosting.net/sql345717" />
-		<property name="username" value="sql345717" />
-		<property name="password" value="nU1*wF3*" />
+<!-- 		<property name="url" -->
+<!-- 			value="jdbc:mysql://sql3.freemysqlhosting.net/sql345717" /> -->
+<!-- 		<property name="username" value="sql345717" /> -->
+<!-- 		<property name="password" value="nU1*wF3*" /> -->
+<property name="url" value="jdbc:mysql://localhost/sakila"/>
+<property name="username" value="root"/>
+<property name="password" value=""/>
 	</bean>
 
 	

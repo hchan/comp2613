@@ -12,6 +12,12 @@
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>1.0.2.RELEASE</version>
+		<exclusions>
+  <exclusion>
+    <artifactId>slf4j-api</artifactId>
+    <groupId>slf4j-api</groupId>
+  </exclusion>
+</exclusions>
 	</parent>
 
 	<build>
@@ -211,10 +217,16 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
+			
 		</dependency>
 		<dependency>
 			<groupId>com.h2database</groupId>
 			<artifactId>h2</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>5.1.10</version>
 		</dependency>
 		<dependency>
 			<groupId>mysql</groupId>
@@ -226,6 +238,11 @@
 			<artifactId>hsqldb</artifactId>
 			<version>2.2.8</version>
 		</dependency>
+<!-- <dependency> -->
+<!-- 	<groupId>org.slf4j</groupId> -->
+<!-- 	<artifactId>slf4j-api</artifactId> -->
+<!-- 	<version>1.7.7</version> -->
+<!-- </dependency> -->
 
 
 	</dependencies>
@@ -236,4 +253,35 @@
 			<url>http://onejar-maven-plugin.googlecode.com/svn/mavenrepo</url>
 		</pluginRepository>
 	</pluginRepositories>
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>slf4j-api</artifactId>
+				<version>1.5.11</version>
+			</dependency>
+			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>jcl-over-slf4j</artifactId>
+				<version>1.5.11</version>
+			</dependency>
+			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>log4j-over-slf4j</artifactId>
+				<version>1.5.11</version>
+			</dependency>
+			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>jul-to-slf4j</artifactId>
+				<version>1.5.11</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+	<exclusions>
+     <!-- Exclude Commons Logging in favor of SLF4j -->
+     <exclusion>
+              <groupId>commons-logging</groupId>
+              <artifactId>commons-logging</artifactId>
+     </exclusion>
+ </exclusions>
 </project>

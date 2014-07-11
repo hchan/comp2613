@@ -11,9 +11,9 @@ import ca.bcit.comp2613.coursematerial.day08.repository.TeacherRepository;
 
 @EnableAutoConfiguration
 @ImportResource("applicationContext.xml")
-public class TestDriverWithIMySQLDB {
+public class TestDriverWithMySQLDB {
 	public static void main(String[] args) {
-		ConfigurableApplicationContext context = SpringApplication.run(TestDriverWithIMySQLDB.class); 
+		ConfigurableApplicationContext context = SpringApplication.run(TestDriverWithMySQLDB.class); 
 		
 		TeacherRepository teacherRepository = context.getBean(TeacherRepository.class);
 		

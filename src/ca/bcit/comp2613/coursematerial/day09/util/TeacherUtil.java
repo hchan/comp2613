@@ -5,6 +5,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.UUID;
 
+import ca.bcit.comp2613.coursematerial.day09.model.Gender;
 import ca.bcit.comp2613.coursematerial.day09.model.Student;
 import ca.bcit.comp2613.coursematerial.day09.model.Teacher;
 
@@ -12,15 +13,15 @@ public class TeacherUtil {
 
 	public static ArrayList<Teacher> create100RandomTeachers() {
 		ArrayList<Teacher> teachers = new ArrayList<>();
-		Teacher teacher = new Teacher("a00788076", "Henry", "Chan");
+		Teacher teacher = new Teacher("a00788076", "Henry", "Chan", Gender.MALE);
 
 		teachers.add(teacher);
-		teacher = new Teacher("a00123456", "Paul", "Mills");
+		teacher = new Teacher("a00123456", "Paul", "Mills", Gender.MALE);
 		teachers.add(teacher);
 		for (int i = 0; i < 100; i++) {
 			String firstName = UUID.randomUUID().toString();
 			String lastName = UUID.randomUUID().toString();
-			teacher = new Teacher (Integer.toString(i), firstName, lastName);
+			teacher = new Teacher (Integer.toString(i), firstName, lastName, Gender.MALE);
 			teachers.add(teacher);
 		}
 		return teachers;

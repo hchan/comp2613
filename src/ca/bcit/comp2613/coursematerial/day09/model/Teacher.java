@@ -29,15 +29,19 @@ public class Teacher {
 	joinColumns = { @JoinColumn(name = "teacher_id") }, inverseJoinColumns = { @JoinColumn(name = "student_id") })
 	private List<Student> students;
 	
+	
+	private Gender gender;
+	
 	public Teacher() {
 		
 	}
 	
-	public Teacher(String id, String firstName, String lastName) {
+	public Teacher(String id, String firstName, String lastName, Gender gender) {
 		super();
 		this.id = id;
 		this.firstName = firstName;
 		this.lastName = lastName;
+		this.gender = gender;
 	}
 	public String getId() {
 		return id;
@@ -62,6 +66,14 @@ public class Teacher {
 	}
 	public void setStudents(List<Student> students) {
 		this.students = students;
+	}
+
+	public Gender getGender() {
+		return gender;
+	}
+
+	public void setGender(Gender gender) {
+		this.gender = gender;
 	}
 	
 	

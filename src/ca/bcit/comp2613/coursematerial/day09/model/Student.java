@@ -27,7 +27,7 @@ public class Student {
 	private Long id;
 	private String firstName;
 	private String lastName;
-
+	
 	@ManyToMany(cascade=CascadeType.ALL)
 	//@ManyToMany(fetch=FetchType.EAGER)
 	//@Fetch (FetchMode.JOIN) // note that the fetchmode will be select ... damn bug with Spring Data!
@@ -95,5 +95,6 @@ public class Student {
 		return "Student [id=" + id + ", firstName=" + firstName + ", lastName="
 				+ lastName + ", teachers=" + teachers + "]";
 	}
+
 
 }

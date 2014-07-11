@@ -11,6 +11,7 @@ import java.util.UUID;
 
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -35,12 +36,15 @@ import org.springframework.transaction.interceptor.MatchAlwaysTransactionAttribu
 import org.springframework.transaction.interceptor.TransactionInterceptor;
 import org.springframework.transaction.support.TransactionSynchronizationManager;
 
+import ca.bcit.comp2613.coursematerial.day09.model.Gender;
 import ca.bcit.comp2613.coursematerial.day09.model.Student;
 import ca.bcit.comp2613.coursematerial.day09.model.Teacher;
 import ca.bcit.comp2613.coursematerial.day09.repository.CustomQueryHelper;
 import ca.bcit.comp2613.coursematerial.day09.repository.StudentRepository;
 import ca.bcit.comp2613.coursematerial.day09.repository.TeacherRepository;
 import ca.bcit.comp2613.coursematerial.day09.util.TeacherUtil;
+
+import javax.swing.JComboBox;
 
 public class TeacherSwingApplication {
 
@@ -52,7 +56,7 @@ public class TeacherSwingApplication {
 	private JLabel lblId;
 	private NonEditableDefaultTableModel nonEditableDefaultTableModel;
 	public String[] columnNames = new String[] { "id", "First Name",
-			"Last Name" };
+			"Last Name", "Gender" };
 	private JTextField idTextField;
 	public static List<Teacher> teachers;
 	public static List<Student> students;
@@ -61,11 +65,12 @@ public class TeacherSwingApplication {
 	public static TeacherRepository teacherRepository;
 	public static StudentRepository studentRepository;
 	public static CustomQueryHelper customQueryHelper;
+
 	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
-		
+
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -77,29 +82,35 @@ public class TeacherSwingApplication {
 			}
 		});
 	}
-	
+
 	public static <T> List<T> copyIterator(Iterator<T> iter) {
-	    List<T> copy = new ArrayList();
-	    while (iter.hasNext())
-	        copy.add(iter.next());
-	    return copy;
+		List<T> copy = new ArrayList();
+		while (iter.hasNext())
+			copy.add(iter.next());
+		return copy;
 	}
 
 	/**
 	 * Create the application.
 	 */
 	public static boolean useInMemoryDB = true;
+	private JLabel lblGender;
+	private JComboBox<Gender> genderComboBox;
+
 	public TeacherSwingApplication() {
-		//ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
-		
+		// ClassPathXmlApplicationContext context = new
+		// ClassPathXmlApplicationContext("applicationContext.xml");
+
 		ConfigurableApplicationContext context = null;
 		if (useInMemoryDB) {
 			context = SpringApplication.run(H2Config.class);
 			try {
 				org.h2.tools.Server.createWebServer(null).start();
-				DataSource dataSource = (DataSource) context.getBean("dataSource");
-				//org.apache.tomcat.jdbc.pool.DataSource tomcatDataSource = (org.apache.tomcat.jdbc.pool.DataSource) dataSource;
-				//int a = 5;
+				DataSource dataSource = (DataSource) context
+						.getBean("dataSource");
+				// org.apache.tomcat.jdbc.pool.DataSource tomcatDataSource =
+				// (org.apache.tomcat.jdbc.pool.DataSource) dataSource;
+				// int a = 5;
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -107,57 +118,67 @@ public class TeacherSwingApplication {
 		} else {
 			context = SpringApplication.run(MySQLConfig.class);
 		}
-		
-		
+
 		for (String beanDefinitionName : context.getBeanDefinitionNames()) {
 			System.out.println(beanDefinitionName);
 		}
-		
-		EntityManagerFactory emf  = (EntityManagerFactory) context.getBean("entityManagerFactory");
+
+		EntityManagerFactory emf = (EntityManagerFactory) context
+				.getBean("entityManagerFactory");
 		/*
-		DataSource dataSource = (DataSource) context.getBean("dataSource");
-		 HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
-		    vendorAdapter.setGenerateDdl(false);
-		LocalContainerEntityManagerFactoryBean localContainerEntityManagerFactoryBean = new LocalContainerEntityManagerFactoryBean();
-		localContainerEntityManagerFactoryBean.setJpaVendorAdapter(vendorAdapter);
-		localContainerEntityManagerFactoryBean.setPackagesToScan(TeacherSwingApplication.class.getPackage().getName());
-		
-		localContainerEntityManagerFactoryBean.setDataSource(dataSource);
-		localContainerEntityManagerFactoryBean.afterPropertiesSet();
-		
-		EntityManagerFactory emf  = localContainerEntityManagerFactoryBean.getObject();
-		
-		final JpaTransactionManager xactManager = new JpaTransactionManager(emf);
-		//EntityManagerFactory emf = (EntityManagerFactory) context.getBean("entityManagerFactory");
-		//EntityManagerFactory emf = localContainerEntityManagerFactoryBean.getNativeEntityManagerFactory();
-		
-		final JpaRepositoryFactory jpaRepositoryFactory = new JpaRepositoryFactory(emf.createEntityManager());
-		jpaRepositoryFactory.addRepositoryProxyPostProcessor(new RepositoryProxyPostProcessor() {
-	
-		
-		    @Override
-		    public void postProcess(ProxyFactory factory) {
-		    	factory.addAdvice(new TransactionInterceptor(xactManager, new MatchAlwaysTransactionAttributeSource()));
-		    }
-		});
-		
-		
-		teacherRepository = jpaRepositoryFactory.getRepository(TeacherRepository.class);
-		studentRepository = jpaRepositoryFactory.getRepository(StudentRepository.class);
-		//TransactionSynchronizationManager.bindResource(emf, new EntityManagerHolder(emf.createEntityManager()));
-		*/
+		 * DataSource dataSource = (DataSource) context.getBean("dataSource");
+		 * HibernateJpaVendorAdapter vendorAdapter = new
+		 * HibernateJpaVendorAdapter(); vendorAdapter.setGenerateDdl(false);
+		 * LocalContainerEntityManagerFactoryBean
+		 * localContainerEntityManagerFactoryBean = new
+		 * LocalContainerEntityManagerFactoryBean();
+		 * localContainerEntityManagerFactoryBean
+		 * .setJpaVendorAdapter(vendorAdapter);
+		 * localContainerEntityManagerFactoryBean
+		 * .setPackagesToScan(TeacherSwingApplication
+		 * .class.getPackage().getName());
+		 * 
+		 * localContainerEntityManagerFactoryBean.setDataSource(dataSource);
+		 * localContainerEntityManagerFactoryBean.afterPropertiesSet();
+		 * 
+		 * EntityManagerFactory emf =
+		 * localContainerEntityManagerFactoryBean.getObject();
+		 * 
+		 * final JpaTransactionManager xactManager = new
+		 * JpaTransactionManager(emf); //EntityManagerFactory emf =
+		 * (EntityManagerFactory) context.getBean("entityManagerFactory");
+		 * //EntityManagerFactory emf =
+		 * localContainerEntityManagerFactoryBean.getNativeEntityManagerFactory
+		 * ();
+		 * 
+		 * final JpaRepositoryFactory jpaRepositoryFactory = new
+		 * JpaRepositoryFactory(emf.createEntityManager());
+		 * jpaRepositoryFactory.addRepositoryProxyPostProcessor(new
+		 * RepositoryProxyPostProcessor() {
+		 * 
+		 * 
+		 * @Override public void postProcess(ProxyFactory factory) {
+		 * factory.addAdvice(new TransactionInterceptor(xactManager, new
+		 * MatchAlwaysTransactionAttributeSource())); } });
+		 * 
+		 * 
+		 * teacherRepository =
+		 * jpaRepositoryFactory.getRepository(TeacherRepository.class);
+		 * studentRepository =
+		 * jpaRepositoryFactory.getRepository(StudentRepository.class);
+		 * //TransactionSynchronizationManager.bindResource(emf, new
+		 * EntityManagerHolder(emf.createEntityManager()));
+		 */
 		teacherRepository = context.getBean(TeacherRepository.class);
 		studentRepository = context.getBean(StudentRepository.class);
 		customQueryHelper = new CustomQueryHelper(emf);
 		teachers = copyIterator(teacherRepository.findAll().iterator());
 		students = copyIterator(studentRepository.findAll().iterator());
-		//StudentUtil.randomlyAssignStudentsToTeachers(teachers, students);
-		
+		// StudentUtil.randomlyAssignStudentsToTeachers(teachers, students);
 
-		
 		initialize();
 		initTable();
-		//context.close(); // shouldn't close this here
+		// context.close(); // shouldn't close this here
 	}
 
 	private void initTable() {
@@ -186,38 +207,40 @@ public class TeacherSwingApplication {
 					.getValueAt(table.getSelectedRow(), 1).toString());
 			lastNameTextField.setText(table.getModel()
 					.getValueAt(table.getSelectedRow(), 2).toString());
-		} catch (Exception e) {}
+		} catch (Exception e) {
+		}
 	}
 
 	public void doSave() {
 		String id = idTextField.getText();
 		String firstName = firstNameTextField.getText();
 		String lastName = lastNameTextField.getText();
-		Teacher teacher = new Teacher(id, firstName, lastName);
+		Gender gender = (Gender) genderComboBox.getSelectedItem();
+		Teacher teacher = new Teacher(id, firstName, lastName, gender);
 		teacherRepository.save(teacher);
-		//table.clearSelection();
+		// table.clearSelection();
 		refreshTable();
 	}
-	
+
 	public void doDelete() {
 		String id = idTextField.getText();
-		//Teacher teacher = new Teacher(id, null, null);
+		// Teacher teacher = new Teacher(id, null, null);
 		teacherRepository.delete(id);
 		refreshTable();
 	}
-	
+
 	public void doNew() {
 		String id = UUID.randomUUID().toString();
 		idTextField.setText(id);
 		firstNameTextField.setText("");
 		lastNameTextField.setText("");
 	}
-	
+
 	public void viewAllStudents() {
 		StudentFrame studentFrame = new StudentFrame();
 		studentFrame.setVisible(true);
 	}
-	
+
 	public void viewClass() {
 		String id = idTextField.getText();
 		Teacher teacher = null;
@@ -225,19 +248,20 @@ public class TeacherSwingApplication {
 		if (teacher != null) {
 			ViewClassFrame viewClassFrame = new ViewClassFrame(teacher);
 			viewClassFrame.setVisible(true);
-		}	
+		}
 	}
 
 	private void refreshTable() {
 		// swingTeacherModel = new SwingTeacherModel();
 		Object[][] data = null;
 		teachers = copyIterator(teacherRepository.findAll().iterator());
-		data = new Object[teachers.size()][3];
+		data = new Object[teachers.size()][4];
 		int i = 0;
 		for (Teacher teacher : teachers) {
 			data[i][0] = teacher.getId();
 			data[i][1] = teacher.getFirstName();
 			data[i][2] = teacher.getLastName();
+			data[i][3] = teacher.getGender();
 			i++;
 		}
 		nonEditableDefaultTableModel.setDataVector(data, columnNames);
@@ -249,7 +273,7 @@ public class TeacherSwingApplication {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 601, 499);
+		frame.setBounds(100, 100, 618, 584);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 
@@ -295,7 +319,7 @@ public class TeacherSwingApplication {
 				doSave();
 			}
 		});
-		btnSave.setBounds(44, 412, 89, 23);
+		btnSave.setBounds(44, 497, 89, 23);
 		frame.getContentPane().add(btnSave);
 
 		JButton btnDelete = new JButton("Delete");
@@ -304,7 +328,7 @@ public class TeacherSwingApplication {
 				doDelete();
 			}
 		});
-		btnDelete.setBounds(169, 412, 89, 23);
+		btnDelete.setBounds(159, 497, 89, 23);
 		frame.getContentPane().add(btnDelete);
 
 		JButton btnNewButton = new JButton("New");
@@ -321,7 +345,7 @@ public class TeacherSwingApplication {
 		idTextField.setBounds(159, 285, 325, 20);
 		frame.getContentPane().add(idTextField);
 		idTextField.setColumns(10);
-		
+
 		btnViewAllStudents = new JButton("View all students");
 		btnViewAllStudents.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -330,14 +354,23 @@ public class TeacherSwingApplication {
 		});
 		btnViewAllStudents.setBounds(0, 260, 121, 23);
 		frame.getContentPane().add(btnViewAllStudents);
-		
+
 		btnViewClass = new JButton("View Class");
 		btnViewClass.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				viewClass();
 			}
 		});
-		btnViewClass.setBounds(300, 412, 144, 23);
+		btnViewClass.setBounds(293, 497, 144, 23);
 		frame.getContentPane().add(btnViewClass);
+
+		lblGender = new JLabel("Gender");
+		lblGender.setBounds(44, 416, 77, 14);
+		frame.getContentPane().add(lblGender);
+
+		genderComboBox = new JComboBox<Gender>();
+		genderComboBox.setModel(new DefaultComboBoxModel<Gender>(Gender.values()));
+		genderComboBox.setBounds(159, 413, 325, 20);
+		frame.getContentPane().add(genderComboBox);
 	}
 }

@@ -1,0 +1,29 @@
+2014-07-10 21:46:55.477  INFO 5740 [AWT-EventQueue-0] --- o.s.boot.SpringApplication               : Starting application on optimus with PID 5740 (C:\Users\Henry\.m2\repository\org\springframework\boot\spring-boot\1.0.2.RELEASE\spring-boot-1.0.2.RELEASE.jar started by Henry in C:\workspace\comp2613)
+2014-07-10 21:46:55.524  INFO 5740 [AWT-EventQueue-0] --- s.c.a.AnnotationConfigApplicationContext : Refreshing org.springframework.context.annotation.AnnotationConfigApplicationContext@615ce24f: startup date [Thu Jul 10 21:46:55 PDT 2014]; root of context hierarchy
+2014-07-10 21:46:58.389  INFO 5740 [AWT-EventQueue-0] --- j.LocalContainerEntityManagerFactoryBean : Building JPA container EntityManagerFactory for persistence unit 'default'
+2014-07-10 21:47:00.999  INFO 5740 [AWT-EventQueue-0] --- o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+2014-07-10 21:47:01.022  INFO 5740 [AWT-EventQueue-0] --- o.s.boot.SpringApplication               : Started application in 6.019 seconds (JVM running for 8.382)
+2014-07-10 21:47:29.769  INFO 5740 [Thread-2] --- s.c.a.AnnotationConfigApplicationContext : Closing org.springframework.context.annotation.AnnotationConfigApplicationContext@615ce24f: startup date [Thu Jul 10 21:46:55 PDT 2014]; root of context hierarchy
+2014-07-10 21:47:29.774  INFO 5740 [Thread-2] --- o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans on shutdown
+2014-07-10 21:47:29.781  INFO 5740 [Thread-2] --- j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2014-07-10 21:53:11.523  INFO 5340 [AWT-EventQueue-0] --- o.s.boot.SpringApplication               : Starting application on optimus with PID 5340 (C:\Users\Henry\.m2\repository\org\springframework\boot\spring-boot\1.0.2.RELEASE\spring-boot-1.0.2.RELEASE.jar started by Henry in C:\workspace\comp2613)
+2014-07-10 21:53:11.583  INFO 5340 [AWT-EventQueue-0] --- s.c.a.AnnotationConfigApplicationContext : Refreshing org.springframework.context.annotation.AnnotationConfigApplicationContext@25fc1e03: startup date [Thu Jul 10 21:53:11 PDT 2014]; root of context hierarchy
+2014-07-10 21:53:13.609  INFO 5340 [AWT-EventQueue-0] --- j.LocalContainerEntityManagerFactoryBean : Building JPA container EntityManagerFactory for persistence unit 'default'
+2014-07-10 21:53:15.973  INFO 5340 [AWT-EventQueue-0] --- o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+2014-07-10 21:53:15.998  INFO 5340 [AWT-EventQueue-0] --- o.s.boot.SpringApplication               : Started application in 5.024 seconds (JVM running for 5.88)
+2014-07-10 21:53:20.604  INFO 5340 [Thread-2] --- s.c.a.AnnotationConfigApplicationContext : Closing org.springframework.context.annotation.AnnotationConfigApplicationContext@25fc1e03: startup date [Thu Jul 10 21:53:11 PDT 2014]; root of context hierarchy
+2014-07-10 21:53:20.605  INFO 5340 [Thread-2] --- o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans on shutdown
+2014-07-10 21:53:20.606  INFO 5340 [Thread-2] --- j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2014-07-10 21:53:24.144  INFO 4092 [AWT-EventQueue-0] --- o.s.boot.SpringApplication               : Starting application on optimus with PID 4092 (C:\Users\Henry\.m2\repository\org\springframework\boot\spring-boot\1.0.2.RELEASE\spring-boot-1.0.2.RELEASE.jar started by Henry in C:\workspace\comp2613)
+2014-07-10 21:53:24.201  INFO 4092 [AWT-EventQueue-0] --- s.c.a.AnnotationConfigApplicationContext : Refreshing org.springframework.context.annotation.AnnotationConfigApplicationContext@4b166a70: startup date [Thu Jul 10 21:53:24 PDT 2014]; root of context hierarchy
+2014-07-10 21:53:26.356  INFO 4092 [AWT-EventQueue-0] --- j.LocalContainerEntityManagerFactoryBean : Building JPA container EntityManagerFactory for persistence unit 'default'
+2014-07-10 21:53:28.812  INFO 4092 [AWT-EventQueue-0] --- o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+2014-07-10 21:53:28.835  INFO 4092 [AWT-EventQueue-0] --- o.s.boot.SpringApplication               : Started application in 5.342 seconds (JVM running for 6.242)
+2014-07-10 21:53:59.941  INFO 1656 [AWT-EventQueue-0] --- o.s.boot.SpringApplication               : Starting application on optimus with PID 1656 (C:\Users\Henry\.m2\repository\org\springframework\boot\spring-boot\1.0.2.RELEASE\spring-boot-1.0.2.RELEASE.jar started by Henry in C:\workspace\comp2613)
+2014-07-10 21:53:59.989  INFO 1656 [AWT-EventQueue-0] --- s.c.a.AnnotationConfigApplicationContext : Refreshing org.springframework.context.annotation.AnnotationConfigApplicationContext@190de279: startup date [Thu Jul 10 21:53:59 PDT 2014]; root of context hierarchy
+2014-07-10 21:54:01.938  INFO 1656 [AWT-EventQueue-0] --- j.LocalContainerEntityManagerFactoryBean : Building JPA container EntityManagerFactory for persistence unit 'default'
+2014-07-10 21:54:04.335  INFO 1656 [AWT-EventQueue-0] --- o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+2014-07-10 21:54:04.370  INFO 1656 [AWT-EventQueue-0] --- o.s.boot.SpringApplication               : Started application in 4.961 seconds (JVM running for 5.834)
+2014-07-10 21:54:49.532  INFO 1656 [Thread-2] --- s.c.a.AnnotationConfigApplicationContext : Closing org.springframework.context.annotation.AnnotationConfigApplicationContext@190de279: startup date [Thu Jul 10 21:53:59 PDT 2014]; root of context hierarchy
+2014-07-10 21:54:49.533  INFO 1656 [Thread-2] --- o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans on shutdown
+2014-07-10 21:54:49.535  INFO 1656 [Thread-2] --- j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'

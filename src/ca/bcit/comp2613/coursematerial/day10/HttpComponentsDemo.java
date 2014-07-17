@@ -36,12 +36,12 @@ public class HttpComponentsDemo {
 	private static void doSampleDelete(HttpClient client) throws IOException,
 	ClientProtocolException {
 		HttpResponse response;
-		String id = "14";
+		String id = "5";
 		HttpDelete delete = new HttpDelete("http://rest-hchan.rhcloud.com/api/todo"
 				+ "/" + id);
 	
 		response = client.execute(delete);
-		printResponse(response);
+		printResponse(response);		
 	}
 
 	private static void doSampleGet(HttpClient client) throws IOException,
@@ -70,12 +70,15 @@ public class HttpComponentsDemo {
 	}
 
 	private static void printResponse(HttpResponse response) throws IOException {
-		BufferedReader rd = new BufferedReader(new InputStreamReader(response
-				.getEntity().getContent()));
-
-		String line = "";
-		while ((line = rd.readLine()) != null) {
-			System.out.println(line);
+		System.out.println(response.getStatusLine().getStatusCode());
+		if (response.getEntity() != null) {
+			BufferedReader rd = new BufferedReader(new InputStreamReader(response
+					.getEntity().getContent()));
+	
+			String line = "";
+			while ((line = rd.readLine()) != null) {
+				System.out.println(line);
+			}
 		}
 	}
 
@@ -85,7 +88,7 @@ public class HttpComponentsDemo {
 		HttpResponse response;
 		HttpPost post = new HttpPost("http://rest-hchan.rhcloud.com/api/todo");
 		StringEntity stringEntity = new StringEntity(
-				"{ \"content\" : \"ccc123\", \"order\" :1, \"done\" : false}");
+				"{ \"content\" : \"yoyo\", \"order\" :1, \"done\" : false}");
 		stringEntity.setContentType("application/json");
 		post.setEntity(stringEntity);
 		response = client.execute(post);

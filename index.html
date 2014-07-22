@@ -3,9 +3,19 @@
 <H1>Demo Teacher Application</H1>
 I am an instructor for a course (comp2613) @ BCIT.<br/>
 The sample project I have built is a Teacher/Classroom relationship.<br/>
-<img src="teacherERD.png"/>
+<img src="teacherERD.png"/><br/>
 Basically, you can add or remove teachers, students and add students to a teacher's class<br/>
 This application is powered by Swing backed by a H2 DB.<br/>
+If you wish to see the data persisted to H2, open up the local console:
+<a href="http://localhost:8082">http://localhost:8082</a> (H2 will start a server for you)<br/>
+and login with the following settings:<br/>
+<pre>
+Generic H2 (Embedded)
+org.h2.Driver
+jdbc:h2:mem:testdb
+blank username and password
+</pre>
+<hr/>
  Click <a href="comp2613.zip">here</a> to download my application.  After you unzip this application into a suitable folder, "cd" into that directory and run:<br/>
 <pre>
 java -jar comp2613-0.0.1-SNAPSHOT.jar

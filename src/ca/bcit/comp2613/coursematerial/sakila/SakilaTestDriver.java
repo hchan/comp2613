@@ -1,6 +1,8 @@
 package ca.bcit.comp2613.coursematerial.sakila;
 
 
+import java.util.Iterator;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 
@@ -19,8 +21,18 @@ public class SakilaTestDriver {
 	public static void main(String[] args) {
 		ConfigurableApplicationContext context = SpringApplication.run(SakilaTestDriver.class); 
 		ActorRepository actorRepository = context.getBean(ActorRepository.class);
-		Actor actor = actorRepository.findAll().iterator().next();
-		System.out.println(actor.getFirstName());
+		
+		Iterator iter = actorRepository.findAll().iterator();
+		
+		while (iter.hasNext()) {
+			Actor actor = (Actor) iter.next();
+			System.out.println(actor.getFirstName());
+		}
+		
+		
+		
+		
+		
 		// not that the line below will break ... yeah repositories have problems. 
 		// System.out.println(actor.getFilmActors().iterator().next().getFilm().getTitle());
 		// soln is to doEmfQuery below

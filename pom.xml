@@ -11,13 +11,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>1.0.2.RELEASE</version>
-		<exclusions>
-			<exclusion>
-				<artifactId>slf4j-api</artifactId>
-				<groupId>slf4j-api</groupId>
-			</exclusion>
-		</exclusions>
+		<version>1.0.2.RELEASE</version>	
 	</parent>
 
 	<build>
@@ -277,11 +271,5 @@
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
-	<exclusions>
-		<!-- Exclude Commons Logging in favor of SLF4j -->
-		<exclusion>
-			<groupId>commons-logging</groupId>
-			<artifactId>commons-logging</artifactId>
-		</exclusion>
-	</exclusions>
+	
 </project>

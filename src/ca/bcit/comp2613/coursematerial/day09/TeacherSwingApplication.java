@@ -62,6 +62,8 @@ public class TeacherSwingApplication {
 	public static List<Student> students;
 	private JButton btnViewAllStudents;
 	private JButton btnViewClass;
+	private JLabel lblGender;
+	private JComboBox<Gender> genderComboBox;
 	public static TeacherRepository teacherRepository;
 	public static StudentRepository studentRepository;
 	public static CustomQueryHelper customQueryHelper;
@@ -94,8 +96,7 @@ public class TeacherSwingApplication {
 	 * Create the application.
 	 */
 	public static boolean useInMemoryDB = true;
-	private JLabel lblGender;
-	private JComboBox<Gender> genderComboBox;
+	
 
 	public TeacherSwingApplication() {
 		// ClassPathXmlApplicationContext context = new
@@ -207,7 +208,12 @@ public class TeacherSwingApplication {
 					.getValueAt(table.getSelectedRow(), 1).toString());
 			lastNameTextField.setText(table.getModel()
 					.getValueAt(table.getSelectedRow(), 2).toString());
+			
+			
+			genderComboBox.setSelectedItem(table.getModel()
+					.getValueAt(table.getSelectedRow(), 3));
 		} catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
 

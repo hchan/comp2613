@@ -25,4 +25,9 @@ FTH - For The Horde
 	* you will have to add some code for this to save properly
 10) push your changes on your repo to GitHub
 
+11a) If you have NOT created your zip file for your final project do so
+11b) Optional if you have done 11a / Required if not: 
+		* Modify the <version>0.0.1-SNAPSHOT</version> in pom.xml to <version>final</version>
+		* recreate the .zip artifact and push it up to GitHub Pages
+ 
 Good luck!

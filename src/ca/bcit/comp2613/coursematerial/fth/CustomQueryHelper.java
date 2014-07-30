@@ -49,7 +49,6 @@ public class CustomQueryHelper {
 			Query query = em.createNativeQuery(
 					mysteriousQuerySQL,
 					Character.class);
-			// query.setParameter("teacher_id", teacherId);
 			retval = query.getResultList();
 		} catch (Exception e) {
 

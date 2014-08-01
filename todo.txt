@@ -1,0 +1,3 @@
+combine lectures 4 & 5?
+exploding zip file in pom
+update notes on how to make GitHub pages work properly

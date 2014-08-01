@@ -27,3 +27,11 @@
 2014-07-10 21:54:49.532  INFO 1656 [Thread-2] --- s.c.a.AnnotationConfigApplicationContext : Closing org.springframework.context.annotation.AnnotationConfigApplicationContext@190de279: startup date [Thu Jul 10 21:53:59 PDT 2014]; root of context hierarchy
 2014-07-10 21:54:49.533  INFO 1656 [Thread-2] --- o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans on shutdown
 2014-07-10 21:54:49.535  INFO 1656 [Thread-2] --- j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2014-07-28 10:11:05.451  INFO 8148 [AWT-EventQueue-0] --- o.s.boot.SpringApplication               : Starting application on optimus with PID 8148 (C:\Users\Henry\.m2\repository\org\springframework\boot\spring-boot\1.0.2.RELEASE\spring-boot-1.0.2.RELEASE.jar started by Henry in C:\comp2613Summer2014\comp2613)
+2014-07-28 10:11:05.548  INFO 8148 [AWT-EventQueue-0] --- s.c.a.AnnotationConfigApplicationContext : Refreshing org.springframework.context.annotation.AnnotationConfigApplicationContext@5e8f82c8: startup date [Mon Jul 28 10:11:05 PDT 2014]; root of context hierarchy
+2014-07-28 10:11:08.022  INFO 8148 [AWT-EventQueue-0] --- j.LocalContainerEntityManagerFactoryBean : Building JPA container EntityManagerFactory for persistence unit 'default'
+2014-07-28 10:11:12.543  INFO 8148 [AWT-EventQueue-0] --- o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+2014-07-28 10:11:12.654  INFO 8148 [AWT-EventQueue-0] --- o.s.boot.SpringApplication               : Started application in 7.992 seconds (JVM running for 11.397)
+2014-07-28 10:11:18.012  INFO 8148 [Thread-2] --- s.c.a.AnnotationConfigApplicationContext : Closing org.springframework.context.annotation.AnnotationConfigApplicationContext@5e8f82c8: startup date [Mon Jul 28 10:11:05 PDT 2014]; root of context hierarchy
+2014-07-28 10:11:18.019  INFO 8148 [Thread-2] --- o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans on shutdown
+2014-07-28 10:11:18.024  INFO 8148 [Thread-2] --- j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'

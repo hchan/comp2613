@@ -1,0 +1,2 @@
+* exploding dir for package
+* show students github pages via a dummy project: dummy-gh-pages
